@@ -32,7 +32,8 @@
         .toast.show{transform:translateX(0)}
         ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#f1f5f9}::-webkit-scrollbar-thumb{background:#1a6b4a;border-radius:4px}
         .login-bg{background:linear-gradient(135deg,#064e3b,#0c4a3e,#1a6b4a);min-height:100vh}
-        #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8px}
+        #loginScreen{min-height:100vh;align-items:center;justify-content:center;padding:8px}
+        #loginScreen:not(.hidden){display:flex}
         .ayah-text{border-bottom:1px dashed #e5e7eb;padding:12px 0}.ayah-text:last-child{border-bottom:none}
         .surah-item{transition:all .2s}.surah-item:hover{background:rgba(212,168,83,.1);transform:translateX(4px)}
         .school-logo{width:80px;height:80px;border-radius:50%;border:3px solid #d4a853;padding:3px;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto}
@@ -1114,11 +1115,13 @@ function doLogin(){
         .finally(()=>{btn.disabled=false;btn.innerHTML='🔐 Masuk'});
 }
 
-function doLogout(){if(confirm('Yakin ingin keluar?')){currentUser=null;localStorage.removeItem('amaliahUser');localStorage.removeItem('amaliahOfflineMode');document.getElementById('mainApp').classList.add('hidden');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('loginId').value='';document.getElementById('loginPassword').value=''}}
+function doLogout(){if(confirm('Yakin ingin keluar?')){currentUser=null;localStorage.removeItem('amaliahUser');localStorage.removeItem('amaliahOfflineMode');if(_clockInterval){clearInterval(_clockInterval);_clockInterval=null}const main=document.getElementById('mainApp');main.classList.add('hidden');main.style.display='';document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('loginId').value='';document.getElementById('loginPassword').value='';selectRole('siswa')}}
 
 // ==================== MAIN APP ====================
 function showMainApp(){
-    document.getElementById('loginScreen').classList.add('hidden');document.getElementById('mainApp').classList.remove('hidden');
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('mainApp').classList.remove('hidden');
+    document.getElementById('mainApp').style.display='block';
     document.getElementById('headerName').textContent=currentUser.nama;
     const roleLabel=ROLE_LABELS[currentUser.role]+(currentUser.kelas&&currentUser.kelas!=='-'?' — '+currentUser.kelas:'');
     document.getElementById('headerRole').textContent=roleLabel;
