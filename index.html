@@ -889,7 +889,7 @@ function handleRequest(e){
       case 'test':result=testConnection();break;
       case 'init':result=initSheets();break;
       case 'login':result=loginUser(e.parameter);break;
-      case 'getUsers':result=getUsers();break;
+      case 'getUsers':result=getUsers(e.parameter);break;
       case 'addUser':result=addUser(e.parameter);break;
       case 'deleteUser':result=deleteUser(e.parameter);break;
       case 'insert':result=insertAmaliah(e.parameter);break;
@@ -958,11 +958,23 @@ function loginUser(p){
   return{status:'error',message:'Username/password salah atau role tidak sesuai!'};
 }
 
-function getUsers(){
+function getUsers(p){
+  p=p||{};
   const ss=getSpreadsheet();const sheet=ss.getSheetByName('Users');
   if(!sheet)return{status:'success',data:[]};
   const data=sheet.getDataRange().getValues();const users=[];
-  for(let i=1;i<data.length;i++){users.push({username:data[i][0],nama:data[i][2],role:data[i][3],kelas:data[i][4],status:data[i][5],addedBy:data[i][6]||''})}
+  for(let i=1;i<data.length;i++){
+    const uRole=String(data[i][3]||'');
+    const uKelas=String(data[i][4]||'');
+    const uStatus=String(data[i][5]||'');
+    // Filter by role jika ada
+    if(p.role&&uRole!==p.role)continue;
+    // Filter by kelas jika ada
+    if(p.kelas&&p.kelas!=='-'&&uKelas!==p.kelas)continue;
+    // Skip inactive
+    if(uStatus==='inactive')continue;
+    users.push({username:data[i][0],nama:data[i][2],role:uRole,kelas:uKelas,status:uStatus,addedBy:data[i][6]||''});
+  }
   return{status:'success',data:users};
 }
 
