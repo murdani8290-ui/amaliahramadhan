@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaliah Ramadhan 1447 H - SMAN 10 Pinrang</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{font-family:'Poppins',sans-serif}
+        .arabic{font-family:'Amiri',serif;direction:rtl;line-height:2.5}
+        .bg-islamic{background:linear-gradient(135deg,#0c4a3e 0%,#1a6b4a 30%,#0d5c3f 60%,#064e3b 100%)}
+        .gold-text{color:#d4a853}
+        .gold-border{border-color:#d4a853}
+        .card-hover{transition:all .3s ease}
+        .card-hover:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
+        .nav-active{background:rgba(212,168,83,.2);border-bottom:3px solid #d4a853;color:#d4a853}
+        .fade-in{animation:fadeIn .45s ease-out}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes pulse-glow{0%,100%{box-shadow:0 0 6px rgba(212,168,83,.3)}50%{box-shadow:0 0 22px rgba(212,168,83,.65)}}
+        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        @keyframes spin-slow{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+        .pulse-glow{animation:pulse-glow 2s infinite}
+        .float-anim{animation:float 3s ease-in-out infinite}
+        .pattern-bg{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a853' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+        .checkbox-islamic{accent-color:#d4a853;width:20px;height:20px}
+        .tab-content{display:none}.tab-content.active{display:block}
+        .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.65);z-index:100;display:none;justify-content:center;align-items:center}
+        .modal-overlay.show{display:flex}
+        .toast{position:fixed;bottom:24px;right:20px;z-index:200;transform:translateX(420px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+        .toast.show{transform:translateX(0)}
+        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#f1f5f9}::-webkit-scrollbar-thumb{background:#1a6b4a;border-radius:4px}
+        .login-bg{background:linear-gradient(135deg,#064e3b,#0c4a3e,#1a6b4a);min-height:100vh}
+        #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8px}
+        .ayah-text{border-bottom:1px dashed #e5e7eb;padding:12px 0}.ayah-text:last-child{border-bottom:none}
+        .surah-item{transition:all .2s}.surah-item:hover{background:rgba(212,168,83,.1);transform:translateX(4px)}
+        .school-logo{width:80px;height:80px;border-radius:50%;border:3px solid #d4a853;padding:3px;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto}
+        .school-logo-sm{width:42px;height:42px;border-radius:50%;border:2px solid #d4a853;padding:2px;background:white;display:flex;align-items:center;justify-content:center}
+        .school-logo svg,.school-logo-sm svg{width:100%;height:100%}
+        .hafalan-card{transition:all .3s;border:1px solid #e5e7eb}.hafalan-card:hover{transform:scale(1.015);box-shadow:0 8px 25px rgba(0,0,0,.08)}
+        .status-lancar{background:#dcfce7;color:#166534;border:1px solid #86efac}
+        .status-kurang{background:#fef9c3;color:#854d0e;border:1px solid #fde047}
+        .status-belum{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+        .status-menunggu{background:#e0e7ff;color:#3730a3;border:1px solid #a5b4fc}
+        /* Stat cards */
+        .stat-ring{stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1s ease;transform-origin:center;transform:rotate(-90deg)}
+        /* Progress bars */
+        .prog-bar{height:10px;border-radius:99px;background:#e2e8f0;overflow:hidden}
+        .prog-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+        /* Notification badge */
+        .notif-badge{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;border-radius:99px;min-width:16px;height:16px;display:flex;align-items:center;justify-content:center;padding:0 3px}
+        /* Streak badge */
+        .streak-fire{font-size:24px;filter:drop-shadow(0 2px 6px rgba(239,68,68,.5))}
+        /* Shimmer skeleton */
+        .skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+        /* Quran reader */
+        .quran-page{max-width:720px;margin:0 auto}
+        /* Activity timeline */
+        .timeline-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+        /* Role colors */
+        .role-siswa{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+        .role-guru{background:linear-gradient(135deg,#10b981,#065f46)}
+        .role-wali{background:linear-gradient(135deg,#f59e0b,#d97706)}
+        .role-admin{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
+        /* Manajemen siswa */
+        .siswa-card{transition:all .2s;border:1px solid #e5e7eb}.siswa-card:hover{border-color:#10b981;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+        /* Gamification stars */
+        .star-filled{color:#f59e0b}.star-empty{color:#d1d5db}
+        /* Print */
+        @media print{.no-print{display:none!important}body{background:white}}
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<div id="toast" class="toast bg-green-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-2">
+    <span id="toastIcon">✅</span><span id="toastMsg">Berhasil!</span>
+</div>
+
+<!-- ==================== LOGIN SCREEN ==================== -->
+<div id="loginScreen" class="login-bg pattern-bg">
+    <div class="w-full max-w-md px-4">
+        <div class="text-center mb-5">
+            <div class="school-logo mx-auto mb-3 pulse-glow float-anim" style="width:72px;height:72px">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="56" fill="#064e3b" stroke="#d4a853" stroke-width="3"/>
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#d4a853" stroke-width="1.5"/>
+                    <text x="60" y="22" text-anchor="middle" fill="#d4a853" font-size="7" font-weight="bold" font-family="Poppins">SMAN 10</text>
+                    <polygon points="60,28 63,38 73,38 65,44 68,54 60,48 52,54 55,44 47,38 57,38" fill="#d4a853"/>
+                    <rect x="42" y="58" width="36" height="24" rx="2" fill="#1a6b4a" stroke="#d4a853" stroke-width="1"/>
+                    <line x1="60" y1="58" x2="60" y2="82" stroke="#d4a853" stroke-width="1"/>
+                    <line x1="46" y1="64" x2="57" y2="64" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="46" y1="68" x2="57" y2="68" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="46" y1="72" x2="57" y2="72" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="63" y1="64" x2="74" y2="64" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="63" y1="68" x2="74" y2="68" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="63" y1="72" x2="74" y2="72" stroke="#d4a853" stroke-width="0.8"/>
+                    <line x1="50" y1="86" x2="60" y2="76" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="70" y1="86" x2="60" y2="76" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round"/>
+                    <text x="60" y="98" text-anchor="middle" fill="#d4a853" font-size="6.5" font-weight="bold" font-family="Poppins">PINRANG</text>
+                    <path d="M95,25 A12,12,0,1,1,85,40 A9,9,0,1,0,95,25" fill="#d4a853"/>
+                    <circle cx="98" cy="22" r="2" fill="#d4a853"/>
+                </svg>
+            </div>
+            <p class="arabic text-lg gold-text mb-1">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+            <h2 class="text-white text-xl font-bold tracking-wide">Amaliah Ramadhan 1447 H</h2>
+            <p class="text-emerald-300 text-xs font-medium mt-1">SMAN 10 Pinrang &bull; Pencatatan Ibadah &amp; Setor Hafalan</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <!-- Top accent bar -->
+            <div class="h-1.5 bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-600"></div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-emerald-800 mb-5 text-center flex items-center justify-center gap-2">
+                    <span class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-base">🔐</span>
+                    Masuk ke Aplikasi
+                </h3>
+
+                <!-- Role selector cards -->
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Masuk Sebagai</label>
+                    <div class="grid grid-cols-4 gap-2" id="roleCards">
+                        <button onclick="selectRole('siswa')" data-role="siswa" class="role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 border-emerald-200 bg-emerald-50 hover:border-emerald-500 transition text-center selected-role">
+                            <span class="text-xl">👨‍🎓</span><span class="text-xs font-semibold text-emerald-800">Siswa</span>
+                        </button>
+                        <button onclick="selectRole('guru')" data-role="guru" class="role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 hover:border-green-400 transition text-center">
+                            <span class="text-xl">👨‍🏫</span><span class="text-xs font-semibold text-gray-600">Guru PAI</span>
+                        </button>
+                        <button onclick="selectRole('wali')" data-role="wali" class="role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 hover:border-amber-400 transition text-center">
+                            <span class="text-xl">👩‍🏫</span><span class="text-xs font-semibold text-gray-600">Wali Kelas</span>
+                        </button>
+                        <button onclick="selectRole('admin')" data-role="admin" class="role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 hover:border-purple-400 transition text-center">
+                            <span class="text-xl">👨‍💼</span><span class="text-xs font-semibold text-gray-600">Admin</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="loginRole" value="siswa">
+                </div>
+
+                <div class="mb-3">
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5" id="loginIdLabel">📋 NIS</label>
+                    <div class="relative">
+                        <input type="text" id="loginId" class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-0 focus:border-emerald-500 transition" placeholder="Masukkan NIS">
+                        <span class="absolute right-3 top-2.5 text-gray-400 text-sm" id="loginIdIcon">🆔</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">🔑 Password</label>
+                    <div class="relative">
+                        <input type="password" id="loginPassword" class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-0 focus:border-emerald-500 transition pr-10" placeholder="Masukkan password" onkeydown="if(event.key==='Enter')doLogin()">
+                        <button onclick="togglePw()" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 transition text-sm">👁</button>
+                    </div>
+                </div>
+
+                <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-600 text-xs p-3 rounded-xl mb-3 flex items-center gap-2">
+                    <span>⚠️</span><span id="loginErrorMsg"></span>
+                </div>
+
+                <button onclick="doLogin()" id="btnLogin" class="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm tracking-wide">
+                    🔐 Masuk
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p class="text-emerald-300 text-xs">© 2026 Amaliah Ramadhan 1447 H — SMAN 10 Pinrang</p>
+            <p class="text-emerald-200 text-xs mt-0.5">💻 Dikembangkan oleh <span class="gold-text font-bold">Murdani</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MAIN APP ==================== -->
+<div id="mainApp" class="hidden">
+
+<!-- HEADER -->
+<header class="bg-islamic pattern-bg text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 opacity-5 text-9xl select-none leading-none">☪</div>
+    <div class="container mx-auto px-4 py-3 relative z-10">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="school-logo-sm flex-shrink-0">
+                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="60" r="56" fill="#064e3b" stroke="#d4a853" stroke-width="3"/>
+                        <circle cx="60" cy="60" r="48" fill="none" stroke="#d4a853" stroke-width="1.5"/>
+                        <text x="60" y="22" text-anchor="middle" fill="#d4a853" font-size="7" font-weight="bold" font-family="Poppins">SMAN 10</text>
+                        <polygon points="60,28 63,38 73,38 65,44 68,54 60,48 52,54 55,44 47,38 57,38" fill="#d4a853"/>
+                        <rect x="42" y="58" width="36" height="24" rx="2" fill="#1a6b4a" stroke="#d4a853" stroke-width="1"/>
+                        <line x1="60" y1="58" x2="60" y2="82" stroke="#d4a853" stroke-width="1"/>
+                        <text x="60" y="98" text-anchor="middle" fill="#d4a853" font-size="6.5" font-weight="bold" font-family="Poppins">PINRANG</text>
+                        <path d="M95,25 A12,12,0,1,1,85,40 A9,9,0,1,0,95,25" fill="#d4a853"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-sm md:text-lg font-bold gold-text leading-tight">Amaliah Ramadhan 1447 H</h1>
+                    <div class="flex items-center gap-2">
+                        <p class="text-emerald-300 text-xs">📍 SMAN 10 Pinrang</p>
+                        <span class="text-emerald-500 hidden sm:inline">•</span>
+                        <p class="text-xs font-mono text-amber-300 hidden sm:inline" id="liveClock">--:--:--</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <!-- Live date -->
+                <div class="hidden md:block text-right mr-2">
+                    <p class="text-xs text-emerald-200" id="liveDate">--</p>
+                    <p class="text-xs text-amber-300" id="liveHariKe">Hari Ramadhan --</p>
+                </div>
+                <!-- Profile -->
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-semibold" id="headerName">-</p>
+                    <p class="text-xs text-emerald-300" id="headerRole">-</p>
+                </div>
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shadow-lg border-2 border-amber-400/60" id="headerAvatar" style="background:rgba(212,168,83,.2)">👤</div>
+                <button onclick="doLogout()" title="Keluar" class="bg-red-500/20 hover:bg-red-500/50 text-red-200 hover:text-white px-2.5 py-2 rounded-lg text-xs transition font-medium">🚪</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav class="bg-emerald-900 sticky top-0 z-50 shadow-lg overflow-x-auto">
+    <div class="container mx-auto flex whitespace-nowrap" id="navContainer"></div>
+</nav>
+
+<!-- ==================== BERANDA ==================== -->
+<div id="tab-beranda" class="tab-content active fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <!-- Hero Banner -->
+        <div class="bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-900 rounded-2xl p-6 text-white mb-6 pattern-bg shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full opacity-10 bg-amber-400"></div>
+            <div class="absolute -left-4 bottom-0 text-8xl opacity-5">🌙</div>
+            <div class="flex flex-col md:flex-row md:items-center gap-4 relative z-10">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full">🌙 Ramadhan 1447 H</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-1">مَرْحَبًا يَا رَمَضَان</h3>
+                    <p class="text-emerald-300 text-sm mb-2" id="welcomeMsg">Selamat datang!</p>
+                    <div class="arabic text-lg gold-text bg-emerald-800/60 rounded-xl px-4 py-3 border border-emerald-700/50">
+                        شَهْرُ رَمَضَانَ الَّذِي أُنْزِلَ فِيهِ الْقُرْآنُ هُدًى لِلنَّاسِ
+                    </div>
+                    <p class="text-emerald-300 text-xs italic mt-1">"Bulan Ramadhan yang di dalamnya diturunkan Al-Qur'an sebagai petunjuk bagi manusia" — QS. Al-Baqarah: 185</p>
+                </div>
+                <div class="flex-shrink-0 text-center">
+                    <div class="bg-emerald-700/60 rounded-2xl p-4 border border-emerald-600/40 min-w-[120px]">
+                        <div class="text-4xl font-bold gold-text" id="hariRamadhanHero">--</div>
+                        <div class="text-xs text-emerald-300 mt-1">Hari Ramadhan</div>
+                        <div class="text-xs text-emerald-400 font-mono mt-1" id="tanggalHero">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard cards (role-based) -->
+        <div id="dashboardContent" class="mb-6"></div>
+
+        <!-- 30 Hari Ramadhan Tracker -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🗓️ Tracker 30 Hari Ramadhan</h3>
+                <span class="text-xs text-gray-500 bg-gray-100 rounded-full px-3 py-1" id="trackerCount">0/30 hari</span>
+            </div>
+            <div class="grid grid-cols-6 md:grid-cols-10 gap-2" id="ramadhanDays"></div>
+            <div class="flex gap-4 mt-3">
+                <div class="flex items-center gap-1.5 text-xs text-gray-500"><div class="w-4 h-4 rounded bg-amber-400"></div> Sudah</div>
+                <div class="flex items-center gap-1.5 text-xs text-gray-500"><div class="w-4 h-4 rounded bg-emerald-100"></div> Belum</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== AMALIAH ==================== -->
+<div id="tab-amaliah" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-3xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-emerald-800 mb-2">✅ Form Amaliah Harian Ramadhan</h3>
+            <p class="text-sm text-gray-500 mb-5">Isi data ibadah harianmu setiap hari</p>
+            <form id="formAmaliah" onsubmit="submitAmaliah(event)">
+                <div class="grid md:grid-cols-2 gap-4 mb-5">
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">📅 Tanggal</label><input type="date" id="amTanggal" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-500"></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">🌙 Hari Ramadhan Ke-</label><select id="amHari" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-500"><option value="">Pilih Hari</option></select></div>
+                </div>
+                <div class="bg-emerald-50 rounded-xl p-4 mb-4">
+                    <h4 class="font-semibold text-emerald-800 mb-3">🕌 Shalat 5 Waktu</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-emerald-100 transition text-sm"><input type="checkbox" id="cb_subuh" class="checkbox-islamic">🌅 Subuh</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-emerald-100 transition text-sm"><input type="checkbox" id="cb_dzuhur" class="checkbox-islamic">☀️ Dzuhur</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-emerald-100 transition text-sm"><input type="checkbox" id="cb_ashar" class="checkbox-islamic">🌤️ Ashar</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-emerald-100 transition text-sm"><input type="checkbox" id="cb_maghrib" class="checkbox-islamic">🌅 Maghrib</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-emerald-100 transition text-sm"><input type="checkbox" id="cb_isya" class="checkbox-islamic">🌙 Isya</label>
+                    </div>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-4 mb-4">
+                    <h4 class="font-semibold text-amber-800 mb-3">⭐ Ibadah Sunnah</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_tarawih" class="checkbox-islamic">🌙 Tarawih</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_witir" class="checkbox-islamic">🌟 Witir</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_dhuha" class="checkbox-islamic">☀️ Dhuha</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_tahajud" class="checkbox-islamic">🌌 Tahajud</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_sahur" class="checkbox-islamic">🍽️ Sahur</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_puasa" class="checkbox-islamic">🕌 Puasa</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_sedekah" class="checkbox-islamic">💰 Sedekah</label>
+                        <label class="flex items-center gap-2 bg-white rounded-lg p-2.5 cursor-pointer hover:bg-amber-100 transition text-sm"><input type="checkbox" id="cb_dzikir" class="checkbox-islamic">📿 Dzikir &amp; Doa</label>
+                    </div>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-4 mb-4">
+                    <h4 class="font-semibold text-blue-800 mb-3">📖 Tadarus Al-Quran</h4>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div><label class="block text-sm text-gray-600 mb-1">Juz yang dibaca</label><select id="amJuz" class="w-full border border-gray-300 rounded-lg px-4 py-2"><option value="">Pilih Juz</option></select></div>
+                        <div><label class="block text-sm text-gray-600 mb-1">Jumlah Halaman</label><input type="number" id="amHalaman" min="0" max="30" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="0"></div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 rounded-xl p-4 mb-4">
+                    <h4 class="font-semibold text-purple-800 mb-3">📝 Hafalan Surat</h4>
+                    <input type="text" id="amHafalan" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Contoh: Al-Fatihah, An-Nas">
+                </div>
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">📝 Catatan</label>
+                    <textarea id="amCatatan" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Catatan tambahan..."></textarea>
+                </div>
+                <button type="submit" id="btnSubmitAmaliah" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-lg transition">💾 Simpan Amaliah</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SETOR HAFALAN JUZ 30 (SISWA) ==================== -->
+<div id="tab-hafalan" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-gradient-to-r from-emerald-700 to-emerald-900 rounded-2xl p-6 text-white mb-6 pattern-bg shadow-xl">
+            <h3 class="text-xl font-bold gold-text mb-1">📗 Setor Hafalan Juz 30</h3>
+            <p class="text-emerald-200 text-sm">Pilih surat yang akan disetorkan ke Guru Agama Islam</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h4 class="font-bold text-emerald-800 mb-4">📝 Form Setor Hafalan</h4>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">📅 Tanggal Setor</label>
+                    <input type="date" id="hfTanggal" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">📖 Pilih Surat (Juz 30)</label>
+                    <select id="hfSurat" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-emerald-500"><option value="">Pilih Surat</option></select>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">📋 Dari Ayat</label>
+                    <input type="number" id="hfDariAyat" min="1" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="1" value="1">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">📋 Sampai Ayat</label>
+                    <input type="number" id="hfSampaiAyat" min="1" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Terakhir">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">📝 Catatan Siswa</label>
+                <textarea id="hfCatatan" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Catatan untuk guru..."></textarea>
+            </div>
+            <button onclick="submitSetorHafalan()" id="btnSetorHafalan" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-lg transition">📤 Setor Hafalan ke Guru PAI</button>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h4 class="font-bold text-emerald-800">📋 Riwayat Setoran Saya</h4>
+                <button onclick="loadMyHafalan()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Muat</button>
+            </div>
+            <div id="myHafalanList"><p class="text-gray-400 text-center py-6">Klik "Muat" untuk melihat riwayat</p></div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h4 class="font-bold text-emerald-800 mb-4">📚 Daftar Surat Juz 30 (An-Naba' - An-Nas)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2" id="juz30SurahList"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DATA HAFALAN (GURU PAI) ==================== -->
+<div id="tab-datahafalan" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-2xl p-6 text-white mb-6 shadow-xl">
+            <h3 class="text-xl font-bold mb-1">📗 Penilaian Setor Hafalan Juz 30</h3>
+            <p class="text-amber-200 text-sm">Verifikasi dan nilai hafalan siswa SMAN 10 Pinrang</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex flex-wrap gap-3 mb-4">
+                <button onclick="loadAllHafalan()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Muat Data Hafalan</button>
+                <input type="text" id="searchHafalan" placeholder="🔍 Cari nama siswa..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm flex-1 min-w-48" oninput="filterHafalanData()">
+                <select id="filterHafalanStatus" onchange="filterHafalanData()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <option value="">Semua Status</option>
+                    <option value="Menunggu">⏳ Menunggu</option>
+                    <option value="Lancar">✅ Lancar</option>
+                    <option value="Kurang Lancar">⚠️ Kurang Lancar</option>
+                    <option value="Belum Lancar">❌ Belum Lancar</option>
+                </select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs md:text-sm">
+                    <thead><tr class="bg-amber-700 text-white">
+                        <th class="px-2 py-2">No</th><th class="px-2 py-2">Nama</th><th class="px-2 py-2">Kelas</th><th class="px-2 py-2">Surat</th><th class="px-2 py-2">Ayat</th><th class="px-2 py-2">Tanggal</th><th class="px-2 py-2">Status</th><th class="px-2 py-2">Nilai</th><th class="px-2 py-2">Aksi</th>
+                    </tr></thead>
+                    <tbody id="hafalanBody"><tr><td colspan="9" class="text-center py-8 text-gray-400">Klik "Muat Data Hafalan"</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hafalan Assessment Modal -->
+<div id="hafalanModal" class="modal-overlay" onclick="if(event.target===this)closeHafalanModal()">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg m-4 p-6">
+        <h3 class="text-lg font-bold text-emerald-800 mb-4">📝 Penilaian Hafalan</h3>
+        <input type="hidden" id="hmRowIndex">
+        <div class="bg-emerald-50 rounded-xl p-4 mb-4">
+            <p class="text-sm"><strong>Siswa:</strong> <span id="hmNama"></span></p>
+            <p class="text-sm"><strong>Surat:</strong> <span id="hmSurat"></span></p>
+            <p class="text-sm"><strong>Ayat:</strong> <span id="hmAyat"></span></p>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">📊 Status Penilaian</label>
+            <div class="grid grid-cols-3 gap-2">
+                <button onclick="setHmStatus('Lancar')" class="hm-status-btn bg-green-100 hover:bg-green-300 text-green-800 px-3 py-2 rounded-lg text-sm font-medium border-2 border-transparent transition" data-val="Lancar">✅ Lancar</button>
+                <button onclick="setHmStatus('Kurang Lancar')" class="hm-status-btn bg-yellow-100 hover:bg-yellow-300 text-yellow-800 px-3 py-2 rounded-lg text-sm font-medium border-2 border-transparent transition" data-val="Kurang Lancar">⚠️ Kurang</button>
+                <button onclick="setHmStatus('Belum Lancar')" class="hm-status-btn bg-red-100 hover:bg-red-300 text-red-800 px-3 py-2 rounded-lg text-sm font-medium border-2 border-transparent transition" data-val="Belum Lancar">❌ Belum</button>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">💯 Nilai (0-100)</label>
+            <input type="number" id="hmNilai" min="0" max="100" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Masukkan nilai">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">📝 Catatan Guru</label>
+            <textarea id="hmCatatanGuru" rows="2" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="Catatan penilaian..."></textarea>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="submitPenilaianHafalan()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl transition">💾 Simpan Penilaian</button>
+            <button onclick="closeHafalanModal()" class="bg-gray-200 hover:bg-gray-300 px-4 py-2.5 rounded-xl text-sm">Batal</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== AL-QURAN 30 JUZ ==================== -->
+<div id="tab-quran" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h3 class="text-xl font-bold text-emerald-800 mb-2">📖 Al-Quran 30 Juz - 114 Surat</h3>
+            <p class="text-sm text-gray-500 mb-4">Baca Al-Quran lengkap dengan terjemahan Bahasa Indonesia</p>
+            <div class="flex gap-2 mb-4">
+                <button onclick="showQuranView('surah')" id="btnViewSurah" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition">📋 Per Surat</button>
+                <button onclick="showQuranView('juz')" id="btnViewJuz" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition">📚 Per Juz</button>
+            </div>
+            <div class="mb-4"><input type="text" id="searchSurah" oninput="filterSurahList()" class="w-full border border-gray-300 rounded-lg px-4 py-2.5" placeholder="🔍 Cari nama surat..."></div>
+            <div id="quranSurahView"><div class="grid grid-cols-1 md:grid-cols-2 gap-2" id="surahListContainer"></div></div>
+            <div id="quranJuzView" class="hidden"><div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="juzListContainer"></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Surah Reader Modal -->
+<div id="surahModal" class="modal-overlay" onclick="if(event.target===this)closeSurahModal()">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[95vh] overflow-y-auto m-4">
+        <div class="bg-islamic text-white p-5 rounded-t-2xl sticky top-0 z-10">
+            <div class="flex justify-between items-center">
+                <div><h3 id="rdSurahName" class="text-lg font-bold gold-text"></h3><p id="rdSurahInfo" class="text-emerald-200 text-xs"></p></div>
+                <div class="flex items-center gap-2">
+                    <button onclick="prevSurah()" class="bg-emerald-700 hover:bg-emerald-600 px-3 py-1 rounded text-sm">◀</button>
+                    <button onclick="nextSurah()" class="bg-emerald-700 hover:bg-emerald-600 px-3 py-1 rounded text-sm">▶</button>
+                    <button onclick="closeSurahModal()" class="text-white hover:text-red-300 text-2xl ml-2">&times;</button>
+                </div>
+            </div>
+        </div>
+        <div class="p-5" id="rdSurahBody"><div class="text-center py-10 text-gray-400">Memuat...</div></div>
+    </div>
+</div>
+
+<!-- ==================== HAFALAN SHALAT ==================== -->
+<div id="tab-shalat" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-emerald-800 mb-2">🕌 Hafalan Bacaan Shalat</h3>
+            <p class="text-sm text-gray-500 mb-5">Panduan bacaan shalat lengkap beserta artinya</p>
+            <div class="flex overflow-x-auto gap-2 mb-5 pb-2" id="shalatNav"></div>
+            <div id="shalatContent"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DOA-DOA ==================== -->
+<div id="tab-doa" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-emerald-800 mb-2">🤲 Kumpulan Doa-Doa</h3>
+            <p class="text-sm text-gray-500 mb-4">Doa harian dan doa khusus Ramadhan</p>
+            <div class="flex gap-2 mb-5 overflow-x-auto pb-2" id="doaNav"></div>
+            <div id="doaContent"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DATA AMALIAH ==================== -->
+<div id="tab-data" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-emerald-800 mb-4">📊 Data Amaliah Siswa</h3>
+            <div class="flex flex-wrap gap-3 mb-4">
+                <button onclick="loadAmaliahData()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Muat Data</button>
+                <input type="text" id="searchData" placeholder="🔍 Cari nama..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm flex-1 min-w-48" oninput="filterAmaliahData()">
+                <select id="filterKelas" onchange="filterAmaliahData()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm"><option value="">Semua Kelas</option></select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs md:text-sm">
+                    <thead><tr class="bg-emerald-700 text-white"><th class="px-2 py-2">No</th><th class="px-2 py-2">Nama</th><th class="px-2 py-2">Kelas</th><th class="px-2 py-2">Tanggal</th><th class="px-2 py-2">Hari</th><th class="px-2 py-2">Shalat</th><th class="px-2 py-2">Sunnah</th><th class="px-2 py-2">Puasa</th><th class="px-2 py-2">Tadarus</th><th class="px-2 py-2">Hafalan</th></tr></thead>
+                    <tbody id="dataBody"><tr><td colspan="10" class="text-center py-8 text-gray-400">Klik "Muat Data"</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PROGRESS ==================== -->
+<div id="tab-progress" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-purple-700 to-purple-900 rounded-2xl p-5 text-white mb-6 shadow-xl">
+            <h3 class="text-xl font-bold mb-1">📈 Progress Ibadah Saya</h3>
+            <p class="text-purple-200 text-sm">Pantau perkembangan ibadahmu selama Ramadhan</p>
+        </div>
+
+        <!-- Streak + Quick stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center col-span-2 md:col-span-1 border-t-4 border-red-400">
+                <div class="streak-fire mb-1">🔥</div>
+                <div class="text-3xl font-bold text-red-500" id="streakCount">0</div>
+                <div class="text-xs text-gray-500 font-medium">Hari Berturut-turut</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border-t-4 border-emerald-500">
+                <div class="text-2xl mb-1">🕌</div>
+                <div class="text-2xl font-bold text-emerald-600" id="pctShalat">--</div>
+                <div class="text-xs text-gray-500">Shalat 5 Waktu</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border-t-4 border-amber-500">
+                <div class="text-2xl mb-1">⭐</div>
+                <div class="text-2xl font-bold text-amber-600" id="pctSunnah">--</div>
+                <div class="text-xs text-gray-500">Ibadah Sunnah</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-md p-4 text-center border-t-4 border-blue-500">
+                <div class="text-2xl mb-1">🕌</div>
+                <div class="text-2xl font-bold text-blue-600" id="pctPuasa">--</div>
+                <div class="text-xs text-gray-500">Puasa</div>
+            </div>
+        </div>
+
+        <!-- Progress bars detail -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <h4 class="font-bold text-gray-800 mb-4">📊 Rincian Progress</h4>
+            <div id="progressContent">
+                <p class="text-gray-400 text-center py-8">Klik tombol di bawah untuk memuat progress</p>
+            </div>
+            <button onclick="loadMyProgress()" class="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-xl text-sm font-semibold transition">🔄 Muat Progress</button>
+        </div>
+
+        <!-- Hafalan progress -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h4 class="font-bold text-gray-800 mb-4">📗 Progress Hafalan Juz 30</h4>
+            <div id="hafalanProgressContent">
+                <p class="text-xs text-gray-400">Progress hafalan dimuat otomatis saat halaman terbuka.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== KELOLA USER ==================== -->
+<div id="tab-users" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-emerald-800">👥 Kelola Pengguna</h3>
+                <button onclick="showAddUserForm()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">➕ Tambah User</button>
+            </div>
+            <div id="addUserForm" class="hidden bg-emerald-50 rounded-xl p-5 mb-5 border border-emerald-200">
+                <h4 class="font-semibold text-emerald-800 mb-3">Tambah Pengguna Baru</h4>
+                <div class="grid md:grid-cols-2 gap-3 mb-3">
+                    <input type="text" id="newUsername" placeholder="NIS/Username" class="border rounded-lg px-3 py-2 text-sm">
+                    <input type="password" id="newPassword" placeholder="Password" class="border rounded-lg px-3 py-2 text-sm">
+                    <input type="text" id="newNama" placeholder="Nama Lengkap" class="border rounded-lg px-3 py-2 text-sm">
+                    <select id="newRole" class="border rounded-lg px-3 py-2 text-sm"><option value="siswa">Siswa</option><option value="guru">Guru PAI</option><option value="wali">Wali Kelas</option><option value="admin">Admin</option></select>
+                    <input type="text" id="newKelas" placeholder="Kelas (cth: 10-A)" class="border rounded-lg px-3 py-2 text-sm">
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="addUser()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">💾 Simpan</button>
+                    <button onclick="document.getElementById('addUserForm').classList.add('hidden')" class="bg-gray-200 px-4 py-2 rounded-lg text-sm">Batal</button>
+                </div>
+            </div>
+            <div class="flex gap-3 mb-4">
+                <button onclick="loadUsers()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Muat User</button>
+                <select id="filterUserRole" onchange="filterUsers()" class="border rounded-lg px-3 py-2 text-sm"><option value="">Semua Role</option><option value="siswa">Siswa</option><option value="guru">Guru PAI</option><option value="wali">Wali Kelas</option><option value="admin">Admin</option></select>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm"><thead><tr class="bg-emerald-700 text-white"><th class="px-3 py-2">No</th><th class="px-3 py-2">Username/NIS</th><th class="px-3 py-2">Nama</th><th class="px-3 py-2">Role</th><th class="px-3 py-2">Kelas</th><th class="px-3 py-2">Aksi</th></tr></thead>
+                <tbody id="userBody"><tr><td colspan="6" class="text-center py-8 text-gray-400">Klik "Muat User"</td></tr></tbody></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== KELOLA SISWA (WALI & GURU PAI) ==================== -->
+<div id="tab-siswaku" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-6 text-white mb-6 shadow-xl">
+            <h3 class="text-xl font-bold mb-1" id="siswakuTitle">👨‍🎓 Daftar Siswa</h3>
+            <p class="text-blue-200 text-sm" id="siswakuSubtitle">Kelola siswa dan tambahkan akun baru</p>
+        </div>
+
+        <!-- Form Tambah Siswa -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h4 class="font-bold text-emerald-800">➕ Tambah Siswa Baru</h4>
+                <button onclick="toggleTambahSiswaForm()" id="btnToggleSiswaForm" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">➕ Tambah Siswa</button>
+            </div>
+            <div id="tambahSiswaForm" class="hidden">
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+                    <p class="text-sm text-blue-700">📌 Kelas siswa akan otomatis disesuaikan dengan kelas Anda.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">📋 NIS / Username</label>
+                        <input type="text" id="newSiswaNis" placeholder="cth: 10005" class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">👤 Nama Lengkap</label>
+                        <input type="text" id="newSiswaNama" placeholder="Nama lengkap siswa" class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">🔑 Password Awal</label>
+                        <input type="text" id="newSiswaPassword" placeholder="cth: siswa123" value="siswa123" class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">🏫 Kelas</label>
+                        <input type="text" id="newSiswaKelas" readonly class="w-full border border-gray-200 bg-gray-100 rounded-lg px-4 py-2 text-sm text-gray-500">
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="tambahSiswa()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium">💾 Simpan Siswa</button>
+                    <button onclick="toggleTambahSiswaForm()" class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-sm">Batal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daftar Siswa -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex flex-wrap gap-3 mb-4 items-center">
+                <h4 class="font-bold text-emerald-800 flex-1">📋 Daftar Siswa Kelas <span id="siswakuKelasLabel" class="text-blue-600"></span></h4>
+                <button onclick="loadSiswaku()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Muat</button>
+                <input type="text" id="searchSiswaku" oninput="filterSiswaku()" placeholder="🔍 Cari nama/NIS..." class="border border-gray-300 rounded-lg px-3 py-2 text-sm w-48">
+            </div>
+            <!-- Guru PAI: filter kelas -->
+            <div id="siswakuKelasFilter" class="hidden mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Filter Kelas (Guru PAI)</label>
+                <select id="filterSiswakuKelas" onchange="filterSiswaku()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <option value="">Semua Kelas</option>
+                </select>
+            </div>
+            <div id="siswakuList">
+                <p class="text-center text-gray-400 py-8">Klik "Muat" untuk melihat daftar siswa</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SETUP ==================== -->
+<div id="tab-setup" class="tab-content fade-in">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 border-2 border-emerald-300">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-emerald-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                <div><h3 class="text-xl font-bold text-emerald-800">📊 Masukkan Spreadsheet ID</h3><p class="text-sm text-gray-500">ID otomatis tertanam di kode GAS</p></div>
+            </div>
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4 rounded"><p class="text-sm text-amber-800"><strong>⚠️ Penting!</strong> Spreadsheet ID langsung masuk ke kode GAS. Tinggal copy-paste!</p></div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">🔑 Spreadsheet ID</label>
+                <input type="text" id="spreadsheetId" oninput="onSpreadsheetIdChange()" class="w-full border-2 border-emerald-400 rounded-xl px-4 py-3 font-mono text-base focus:ring-4 focus:ring-emerald-200 focus:border-emerald-600 bg-emerald-50" placeholder="Paste Spreadsheet ID di sini...">
+            </div>
+            <div id="idStatus" class="mb-4"></div>
+            <details class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                <summary class="font-semibold text-blue-800 text-sm cursor-pointer">📌 Cara Mendapatkan Spreadsheet ID</summary>
+                <ol class="text-sm text-blue-700 space-y-2 mt-3 list-decimal list-inside">
+                    <li>Buka <a href="https://sheets.google.com" target="_blank" class="underline font-semibold">Google Spreadsheet</a> → buat baru</li>
+                    <li>Lihat URL: <code class="bg-blue-100 px-2 py-1 rounded text-xs break-all">https://docs.google.com/spreadsheets/d/<b class="text-red-600">ID_ANDA</b>/edit</code></li>
+                    <li>Copy bagian <b class="text-red-600">merah</b> → paste di atas</li>
+                </ol>
+            </details>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 border-2 border-amber-300">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                <div><h3 class="text-xl font-bold text-emerald-800">📝 Copy Kode GAS (ID Tertanam)</h3><p class="text-sm text-gray-500">Kode sudah berisi Spreadsheet ID — tinggal copy &amp; paste</p></div>
+            </div>
+            <div class="bg-gray-800 text-white rounded-xl p-4 mb-4 font-mono text-sm">
+                <p class="text-gray-400 text-xs mb-1">// Di dalam kode GAS:</p>
+                <p>const SPREADSHEET_ID = '<span id="previewId" class="text-yellow-300 font-bold">BELUM_DIISI</span>';</p>
+            </div>
+            <div class="flex flex-wrap gap-3 mb-4">
+                <button onclick="copyGasCode()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg transition flex items-center gap-2 pulse-glow">📋 COPY KODE GAS LENGKAP</button>
+                <button onclick="toggleCodeView()" id="btnToggleCode" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-3 rounded-xl text-sm font-medium">👁️ Lihat Kode</button>
+            </div>
+            <div id="gasCodeContainer" class="hidden"><pre class="bg-gray-900 text-green-400 p-4 rounded-xl text-xs overflow-x-auto leading-relaxed max-h-[500px] overflow-y-auto" id="gasCode"></pre></div>
+            <div class="bg-green-50 border border-green-200 rounded-xl p-4 mt-4">
+                <h4 class="font-semibold text-green-800 text-sm mb-2">📋 Cara Paste ke Apps Script:</h4>
+                <ol class="text-sm text-green-700 space-y-1.5 list-decimal list-inside">
+                    <li>Buka Spreadsheet → <strong>Extensions → Apps Script</strong></li>
+                    <li>Hapus kode default</li>
+                    <li>Klik <strong>"📋 COPY KODE GAS"</strong> di atas → <strong>Paste</strong> (Ctrl+V)</li>
+                    <li>Klik <strong>💾 Save</strong> (Ctrl+S)</li>
+                </ol>
+            </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 border-2 border-blue-300">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                <div><h3 class="text-xl font-bold text-emerald-800">🚀 Deploy &amp; Hubungkan</h3><p class="text-sm text-gray-500">Deploy Apps Script lalu paste URL-nya</p></div>
+            </div>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded">
+                <ol class="text-sm text-blue-700 space-y-1 list-decimal list-inside">
+                    <li>Di Apps Script: <strong>Deploy → New Deployment → Web app</strong></li>
+                    <li>Execute as: <strong>Me</strong> | Access: <strong>Anyone</strong></li>
+                    <li>Klik <strong>Deploy</strong> → <strong>Authorize</strong> → Allow</li>
+                    <li>Copy <strong>URL Web App</strong></li>
+                </ol>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">🔗 URL Web App</label>
+                <input type="text" id="gasUrl" class="w-full border-2 border-blue-400 rounded-xl px-4 py-3 font-mono text-sm focus:ring-4 focus:ring-blue-200" placeholder="https://script.google.com/macros/s/xxxxx/exec">
+            </div>
+            <div id="embeddedUrlStatus" class="mb-4"></div>
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4 rounded">
+                <p class="text-sm text-amber-800"><strong>💡 Cara Menanam URL Permanen:</strong></p>
+                <p class="text-sm text-amber-700 mt-1">Buka file <code class="bg-amber-200 px-1.5 py-0.5 rounded">index.html</code> → cari baris:</p>
+                <div class="bg-gray-800 text-green-400 rounded-lg p-3 mt-2 font-mono text-xs">
+                    <p class="text-gray-400">// ✅ PASTE URL WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH INI:</p>
+                    <p>const GAS_URL_EMBEDDED = '<span class="text-yellow-300">PASTE_URL_DISINI</span>';</p>
+                </div>
+                <p class="text-xs text-amber-600 mt-2">Setelah ditanam, aplikasi langsung terhubung tanpa perlu setup lagi! ✅</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <button onclick="saveSetup()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium">💾 Simpan</button>
+                <button onclick="testConnection()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium">🔌 Test Koneksi</button>
+                <button onclick="initSheets()" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium">🗄️ Init Database</button>
+            </div>
+            <p id="connectionStatus" class="mt-3 text-sm"></p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-purple-300">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">4</div>
+                <div><h3 class="text-xl font-bold text-emerald-800">🗄️ Struktur Database (3 Sheet)</h3></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-200">
+                    <h4 class="font-semibold text-emerald-800 mb-2">📋 Sheet: Users</h4>
+                    <div class="text-xs text-gray-600 space-y-0.5"><p>• Username/NIS</p><p>• Password</p><p>• Nama, Role, Kelas, Status</p></div>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-4 border border-amber-200">
+                    <h4 class="font-semibold text-amber-800 mb-2">📋 Sheet: DataAmaliah</h4>
+                    <div class="text-xs text-gray-600 space-y-0.5"><p>• Timestamp, Username, Nama, Kelas</p><p>• Shalat 5 Waktu, Sunnah</p><p>• Tadarus, Hafalan, Catatan</p></div>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-2">📋 Sheet: SetorHafalan</h4>
+                    <div class="text-xs text-gray-600 space-y-0.5"><p>• Timestamp, Username, Nama, Kelas</p><p>• Surat, DariAyat, SampaiAyat</p><p>• Status, Nilai, CatatanGuru</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-emerald-900 text-white py-6 mt-8">
+    <div class="container mx-auto px-4 text-center">
+        <div class="arabic text-xl gold-text mb-2">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ</div>
+        <p class="text-emerald-300 text-sm mb-1">"Ya Tuhan kami, terimalah amal dari kami. Engkaulah Yang Maha Mendengar, Maha Mengetahui."</p>
+        <p class="text-emerald-400 text-xs mt-3">© 2026 Amaliah Ramadhan 1447 H — SMAN 10 Pinrang</p>
+        <p class="text-emerald-300 text-xs mt-1.5 font-medium">💻 Dikembangkan oleh <span class="gold-text font-bold">Murdani</span> — 2026</p>
+    </div>
+</footer>
+</div>
+
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-5 right-5 z-50 bg-emerald-600 hover:bg-emerald-700 text-white w-11 h-11 rounded-full shadow-lg flex items-center justify-center text-lg transition">↑</button>
+
+<script>
+// ==================== DATA ====================
+const DEFAULT_ACCOUNTS=[
+    {username:'admin',password:'admin123',nama:'Administrator',role:'admin',kelas:'-'},
+    {username:'gurupai',password:'guru123',nama:'Ustadz Ibrahim, S.Pd.I',role:'guru',kelas:'-'},
+    {username:'gurupai2',password:'guru123',nama:'Ustadzah Maryam, S.Pd.I',role:'guru',kelas:'-'},
+    {username:'wali10a',password:'wali123',nama:'Pak Ahmad, S.Pd',role:'wali',kelas:'10-A'},
+    {username:'wali10b',password:'wali123',nama:'Ibu Fatimah, S.Pd',role:'wali',kelas:'10-B'},
+    {username:'wali11a',password:'wali123',nama:'Pak Hasan, M.Pd',role:'wali',kelas:'11-A'},
+    {username:'wali11b',password:'wali123',nama:'Ibu Rahmawati, S.Pd',role:'wali',kelas:'11-B'},
+    {username:'wali12a',password:'wali123',nama:'Pak Syukri, S.Pd',role:'wali',kelas:'12-A'},
+    {username:'10001',password:'siswa123',nama:'Muhammad Rizki Arafah',role:'siswa',kelas:'10-A'},
+    {username:'10002',password:'siswa123',nama:'Aisyah Putri Ramadhani',role:'siswa',kelas:'10-A'},
+    {username:'10003',password:'siswa123',nama:'Fathurrahman Hakim',role:'siswa',kelas:'10-A'},
+    {username:'10004',password:'siswa123',nama:'Nurul Hikmah Sari',role:'siswa',kelas:'10-B'},
+    {username:'10005',password:'siswa123',nama:'Abdul Aziz Rahman',role:'siswa',kelas:'10-B'},
+    {username:'11001',password:'siswa123',nama:'Khadijah Zahra Putri',role:'siswa',kelas:'11-A'},
+    {username:'11002',password:'siswa123',nama:'Ibrahim Khalil Hamid',role:'siswa',kelas:'11-A'},
+    {username:'11003',password:'siswa123',nama:'Maryam Salsabila',role:'siswa',kelas:'11-B'},
+];
+
+const ROLE_LABELS={siswa:'👨‍🎓 Siswa',guru:'👨‍🏫 Guru PAI',wali:'👩‍🏫 Wali Kelas',admin:'👨‍💼 Admin'};
+const ROLE_AVATARS={siswa:'👨‍🎓',guru:'👨‍🏫',wali:'👩‍🏫',admin:'👨‍💼'};
+
+const NAV_ITEMS={
+    siswa:[{id:'beranda',icon:'🏠',label:'Beranda'},{id:'amaliah',icon:'✅',label:'Amaliah'},{id:'hafalan',icon:'📗',label:'Setor Hafalan'},{id:'quran',icon:'📖',label:'Al-Quran'},{id:'shalat',icon:'🕌',label:'Shalat'},{id:'doa',icon:'🤲',label:'Doa'},{id:'progress',icon:'📈',label:'Progress'}],
+    guru:[{id:'beranda',icon:'🏠',label:'Beranda'},{id:'siswaku',icon:'👨‍🎓',label:'Siswa Saya'},{id:'datahafalan',icon:'📗',label:'Hafalan Siswa'},{id:'data',icon:'📊',label:'Data Amaliah'},{id:'quran',icon:'📖',label:'Al-Quran'},{id:'shalat',icon:'🕌',label:'Shalat'},{id:'doa',icon:'🤲',label:'Doa'}],
+    wali:[{id:'beranda',icon:'🏠',label:'Beranda'},{id:'siswaku',icon:'👨‍🎓',label:'Siswa Wali'},{id:'data',icon:'📊',label:'Data Siswa'},{id:'datahafalan',icon:'📗',label:'Hafalan'},{id:'quran',icon:'📖',label:'Al-Quran'},{id:'shalat',icon:'🕌',label:'Shalat'},{id:'doa',icon:'🤲',label:'Doa'}],
+    admin:[{id:'beranda',icon:'🏠',label:'Beranda'},{id:'data',icon:'📊',label:'Data Amaliah'},{id:'datahafalan',icon:'📗',label:'Hafalan'},{id:'users',icon:'👥',label:'Kelola User'},{id:'quran',icon:'📖',label:'Al-Quran'},{id:'shalat',icon:'🕌',label:'Shalat'},{id:'doa',icon:'🤲',label:'Doa'},{id:'setup',icon:'⚙️',label:'Setup'}]
+};
+
+const ALL_SURAHS=[{no:1,name:"Al-Fatihah",ar:"الفاتحة",arti:"Pembukaan",ayat:7,type:"Makkiyah",juz:1},{no:2,name:"Al-Baqarah",ar:"البقرة",arti:"Sapi",ayat:286,type:"Madaniyah",juz:1},{no:3,name:"Ali 'Imran",ar:"آل عمران",arti:"Keluarga Imran",ayat:200,type:"Madaniyah",juz:3},{no:4,name:"An-Nisa'",ar:"النساء",arti:"Wanita",ayat:176,type:"Madaniyah",juz:4},{no:5,name:"Al-Ma'idah",ar:"المائدة",arti:"Hidangan",ayat:120,type:"Madaniyah",juz:6},{no:6,name:"Al-An'am",ar:"الأنعام",arti:"Binatang Ternak",ayat:165,type:"Makkiyah",juz:7},{no:7,name:"Al-A'raf",ar:"الأعراف",arti:"Tempat Tertinggi",ayat:206,type:"Makkiyah",juz:8},{no:8,name:"Al-Anfal",ar:"الأنفال",arti:"Rampasan Perang",ayat:75,type:"Madaniyah",juz:9},{no:9,name:"At-Taubah",ar:"التوبة",arti:"Pengampunan",ayat:129,type:"Madaniyah",juz:10},{no:10,name:"Yunus",ar:"يونس",arti:"Yunus",ayat:109,type:"Makkiyah",juz:11},{no:11,name:"Hud",ar:"هود",arti:"Hud",ayat:123,type:"Makkiyah",juz:11},{no:12,name:"Yusuf",ar:"يوسف",arti:"Yusuf",ayat:111,type:"Makkiyah",juz:12},{no:13,name:"Ar-Ra'd",ar:"الرعد",arti:"Guruh",ayat:43,type:"Madaniyah",juz:13},{no:14,name:"Ibrahim",ar:"إبراهيم",arti:"Ibrahim",ayat:52,type:"Makkiyah",juz:13},{no:15,name:"Al-Hijr",ar:"الحجر",arti:"Hijr",ayat:99,type:"Makkiyah",juz:14},{no:16,name:"An-Nahl",ar:"النحل",arti:"Lebah",ayat:128,type:"Makkiyah",juz:14},{no:17,name:"Al-Isra'",ar:"الإسراء",arti:"Perjalanan Malam",ayat:111,type:"Makkiyah",juz:15},{no:18,name:"Al-Kahf",ar:"الكهف",arti:"Gua",ayat:110,type:"Makkiyah",juz:15},{no:19,name:"Maryam",ar:"مريم",arti:"Maryam",ayat:98,type:"Makkiyah",juz:16},{no:20,name:"Taha",ar:"طه",arti:"Taha",ayat:135,type:"Makkiyah",juz:16},{no:21,name:"Al-Anbiya'",ar:"الأنبياء",arti:"Para Nabi",ayat:112,type:"Makkiyah",juz:17},{no:22,name:"Al-Hajj",ar:"الحج",arti:"Haji",ayat:78,type:"Madaniyah",juz:17},{no:23,name:"Al-Mu'minun",ar:"المؤمنون",arti:"Orang Beriman",ayat:118,type:"Makkiyah",juz:18},{no:24,name:"An-Nur",ar:"النور",arti:"Cahaya",ayat:64,type:"Madaniyah",juz:18},{no:25,name:"Al-Furqan",ar:"الفرقان",arti:"Pembeda",ayat:77,type:"Makkiyah",juz:18},{no:26,name:"Asy-Syu'ara'",ar:"الشعراء",arti:"Para Penyair",ayat:227,type:"Makkiyah",juz:19},{no:27,name:"An-Naml",ar:"النمل",arti:"Semut",ayat:93,type:"Makkiyah",juz:19},{no:28,name:"Al-Qasas",ar:"القصص",arti:"Kisah-Kisah",ayat:88,type:"Makkiyah",juz:20},{no:29,name:"Al-'Ankabut",ar:"العنكبوت",arti:"Laba-Laba",ayat:69,type:"Makkiyah",juz:20},{no:30,name:"Ar-Rum",ar:"الروم",arti:"Romawi",ayat:60,type:"Makkiyah",juz:21},{no:31,name:"Luqman",ar:"لقمان",arti:"Luqman",ayat:34,type:"Makkiyah",juz:21},{no:32,name:"As-Sajdah",ar:"السجدة",arti:"Sujud",ayat:30,type:"Makkiyah",juz:21},{no:33,name:"Al-Ahzab",ar:"الأحزاب",arti:"Golongan",ayat:73,type:"Madaniyah",juz:21},{no:34,name:"Saba'",ar:"سبأ",arti:"Saba'",ayat:54,type:"Makkiyah",juz:22},{no:35,name:"Fatir",ar:"فاطر",arti:"Pencipta",ayat:45,type:"Makkiyah",juz:22},{no:36,name:"Ya-Sin",ar:"يس",arti:"Ya Sin",ayat:83,type:"Makkiyah",juz:22},{no:37,name:"As-Saffat",ar:"الصافات",arti:"Yang Berbaris",ayat:182,type:"Makkiyah",juz:23},{no:38,name:"Sad",ar:"ص",arti:"Sad",ayat:88,type:"Makkiyah",juz:23},{no:39,name:"Az-Zumar",ar:"الزمر",arti:"Rombongan",ayat:75,type:"Makkiyah",juz:23},{no:40,name:"Ghafir",ar:"غافر",arti:"Yang Mengampuni",ayat:85,type:"Makkiyah",juz:24},{no:41,name:"Fussilat",ar:"فصلت",arti:"Yang Dijelaskan",ayat:54,type:"Makkiyah",juz:24},{no:42,name:"Asy-Syura",ar:"الشورى",arti:"Musyawarah",ayat:53,type:"Makkiyah",juz:25},{no:43,name:"Az-Zukhruf",ar:"الزخرف",arti:"Perhiasan",ayat:89,type:"Makkiyah",juz:25},{no:44,name:"Ad-Dukhan",ar:"الدخان",arti:"Kabut",ayat:59,type:"Makkiyah",juz:25},{no:45,name:"Al-Jasiyah",ar:"الجاثية",arti:"Yang Berlutut",ayat:37,type:"Makkiyah",juz:25},{no:46,name:"Al-Ahqaf",ar:"الأحقاف",arti:"Bukit Pasir",ayat:35,type:"Makkiyah",juz:26},{no:47,name:"Muhammad",ar:"محمد",arti:"Muhammad",ayat:38,type:"Madaniyah",juz:26},{no:48,name:"Al-Fath",ar:"الفتح",arti:"Kemenangan",ayat:29,type:"Madaniyah",juz:26},{no:49,name:"Al-Hujurat",ar:"الحجرات",arti:"Kamar-Kamar",ayat:18,type:"Madaniyah",juz:26},{no:50,name:"Qaf",ar:"ق",arti:"Qaf",ayat:45,type:"Makkiyah",juz:26},{no:51,name:"Adz-Dzariyat",ar:"الذاريات",arti:"Angin yang Menerbangkan",ayat:60,type:"Makkiyah",juz:26},{no:52,name:"At-Tur",ar:"الطور",arti:"Bukit Tur",ayat:49,type:"Makkiyah",juz:27},{no:53,name:"An-Najm",ar:"النجم",arti:"Bintang",ayat:62,type:"Makkiyah",juz:27},{no:54,name:"Al-Qamar",ar:"القمر",arti:"Bulan",ayat:55,type:"Makkiyah",juz:27},{no:55,name:"Ar-Rahman",ar:"الرحمن",arti:"Yang Maha Pengasih",ayat:78,type:"Madaniyah",juz:27},{no:56,name:"Al-Waqi'ah",ar:"الواقعة",arti:"Hari Kiamat",ayat:96,type:"Makkiyah",juz:27},{no:57,name:"Al-Hadid",ar:"الحديد",arti:"Besi",ayat:29,type:"Madaniyah",juz:27},{no:58,name:"Al-Mujadalah",ar:"المجادلة",arti:"Gugatan",ayat:22,type:"Madaniyah",juz:28},{no:59,name:"Al-Hasyr",ar:"الحشر",arti:"Pengusiran",ayat:24,type:"Madaniyah",juz:28},{no:60,name:"Al-Mumtahanah",ar:"الممتحنة",arti:"Wanita yang Diuji",ayat:13,type:"Madaniyah",juz:28},{no:61,name:"As-Saff",ar:"الصف",arti:"Barisan",ayat:14,type:"Madaniyah",juz:28},{no:62,name:"Al-Jumu'ah",ar:"الجمعة",arti:"Jumat",ayat:11,type:"Madaniyah",juz:28},{no:63,name:"Al-Munafiqun",ar:"المنافقون",arti:"Orang Munafik",ayat:11,type:"Madaniyah",juz:28},{no:64,name:"At-Taghabun",ar:"التغابن",arti:"Pengungkapan Kesalahan",ayat:18,type:"Madaniyah",juz:28},{no:65,name:"At-Talaq",ar:"الطلاق",arti:"Talak",ayat:12,type:"Madaniyah",juz:28},{no:66,name:"At-Tahrim",ar:"التحريم",arti:"Pengharaman",ayat:12,type:"Madaniyah",juz:28},{no:67,name:"Al-Mulk",ar:"الملك",arti:"Kerajaan",ayat:30,type:"Makkiyah",juz:29},{no:68,name:"Al-Qalam",ar:"القلم",arti:"Pena",ayat:52,type:"Makkiyah",juz:29},{no:69,name:"Al-Haqqah",ar:"الحاقة",arti:"Hari Kiamat",ayat:52,type:"Makkiyah",juz:29},{no:70,name:"Al-Ma'arij",ar:"المعارج",arti:"Tempat Naik",ayat:44,type:"Makkiyah",juz:29},{no:71,name:"Nuh",ar:"نوح",arti:"Nuh",ayat:28,type:"Makkiyah",juz:29},{no:72,name:"Al-Jinn",ar:"الجن",arti:"Jin",ayat:28,type:"Makkiyah",juz:29},{no:73,name:"Al-Muzzammil",ar:"المزمل",arti:"Orang yang Berselimut",ayat:20,type:"Makkiyah",juz:29},{no:74,name:"Al-Muddassir",ar:"المدثر",arti:"Orang yang Berkemul",ayat:56,type:"Makkiyah",juz:29},{no:75,name:"Al-Qiyamah",ar:"القيامة",arti:"Hari Kiamat",ayat:40,type:"Makkiyah",juz:29},{no:76,name:"Al-Insan",ar:"الإنسان",arti:"Manusia",ayat:31,type:"Madaniyah",juz:29},{no:77,name:"Al-Mursalat",ar:"المرسلات",arti:"Malaikat yang Diutus",ayat:50,type:"Makkiyah",juz:29},{no:78,name:"An-Naba'",ar:"النبأ",arti:"Berita Besar",ayat:40,type:"Makkiyah",juz:30},{no:79,name:"An-Nazi'at",ar:"النازعات",arti:"Malaikat Pencabut Nyawa",ayat:46,type:"Makkiyah",juz:30},{no:80,name:"'Abasa",ar:"عبس",arti:"Bermuka Masam",ayat:42,type:"Makkiyah",juz:30},{no:81,name:"At-Takwir",ar:"التكوير",arti:"Menggulung",ayat:29,type:"Makkiyah",juz:30},{no:82,name:"Al-Infitar",ar:"الانفطار",arti:"Terbelah",ayat:19,type:"Makkiyah",juz:30},{no:83,name:"Al-Mutaffifin",ar:"المطففين",arti:"Orang yang Curang",ayat:36,type:"Makkiyah",juz:30},{no:84,name:"Al-Insyiqaq",ar:"الانشقاق",arti:"Terbelah",ayat:25,type:"Makkiyah",juz:30},{no:85,name:"Al-Buruj",ar:"البروج",arti:"Gugusan Bintang",ayat:22,type:"Makkiyah",juz:30},{no:86,name:"At-Tariq",ar:"الطارق",arti:"Yang Datang di Malam Hari",ayat:17,type:"Makkiyah",juz:30},{no:87,name:"Al-A'la",ar:"الأعلى",arti:"Yang Paling Tinggi",ayat:19,type:"Makkiyah",juz:30},{no:88,name:"Al-Gasyiyah",ar:"الغاشية",arti:"Hari Pembalasan",ayat:26,type:"Makkiyah",juz:30},{no:89,name:"Al-Fajr",ar:"الفجر",arti:"Fajar",ayat:30,type:"Makkiyah",juz:30},{no:90,name:"Al-Balad",ar:"البلد",arti:"Negeri",ayat:20,type:"Makkiyah",juz:30},{no:91,name:"Asy-Syams",ar:"الشمس",arti:"Matahari",ayat:15,type:"Makkiyah",juz:30},{no:92,name:"Al-Lail",ar:"الليل",arti:"Malam",ayat:21,type:"Makkiyah",juz:30},{no:93,name:"Ad-Duha",ar:"الضحى",arti:"Waktu Duha",ayat:11,type:"Makkiyah",juz:30},{no:94,name:"Al-Insyirah",ar:"الشرح",arti:"Kelapangan",ayat:8,type:"Makkiyah",juz:30},{no:95,name:"At-Tin",ar:"التين",arti:"Buah Tin",ayat:8,type:"Makkiyah",juz:30},{no:96,name:"Al-'Alaq",ar:"العلق",arti:"Segumpal Darah",ayat:19,type:"Makkiyah",juz:30},{no:97,name:"Al-Qadr",ar:"القدر",arti:"Kemuliaan",ayat:5,type:"Makkiyah",juz:30},{no:98,name:"Al-Bayyinah",ar:"البينة",arti:"Bukti Nyata",ayat:8,type:"Madaniyah",juz:30},{no:99,name:"Az-Zalzalah",ar:"الزلزلة",arti:"Kegoncangan",ayat:8,type:"Madaniyah",juz:30},{no:100,name:"Al-'Adiyat",ar:"العاديات",arti:"Kuda Perang",ayat:11,type:"Makkiyah",juz:30},{no:101,name:"Al-Qari'ah",ar:"القارعة",arti:"Hari Kiamat",ayat:11,type:"Makkiyah",juz:30},{no:102,name:"At-Takasur",ar:"التكاثر",arti:"Bermegah-megahan",ayat:8,type:"Makkiyah",juz:30},{no:103,name:"Al-'Asr",ar:"العصر",arti:"Masa",ayat:3,type:"Makkiyah",juz:30},{no:104,name:"Al-Humazah",ar:"الهمزة",arti:"Pengumpat",ayat:9,type:"Makkiyah",juz:30},{no:105,name:"Al-Fil",ar:"الفيل",arti:"Gajah",ayat:5,type:"Makkiyah",juz:30},{no:106,name:"Quraisy",ar:"قريش",arti:"Suku Quraisy",ayat:4,type:"Makkiyah",juz:30},{no:107,name:"Al-Ma'un",ar:"الماعون",arti:"Barang yang Berguna",ayat:7,type:"Makkiyah",juz:30},{no:108,name:"Al-Kausar",ar:"الكوثر",arti:"Nikmat Berlimpah",ayat:3,type:"Makkiyah",juz:30},{no:109,name:"Al-Kafirun",ar:"الكافرون",arti:"Orang-Orang Kafir",ayat:6,type:"Makkiyah",juz:30},{no:110,name:"An-Nasr",ar:"النصر",arti:"Pertolongan",ayat:3,type:"Madaniyah",juz:30},{no:111,name:"Al-Masad",ar:"المسد",arti:"Gejolak Api",ayat:5,type:"Makkiyah",juz:30},{no:112,name:"Al-Ikhlas",ar:"الإخلاص",arti:"Ikhlas",ayat:4,type:"Makkiyah",juz:30},{no:113,name:"Al-Falaq",ar:"الفلق",arti:"Waktu Subuh",ayat:5,type:"Makkiyah",juz:30},{no:114,name:"An-Nas",ar:"الناس",arti:"Manusia",ayat:6,type:"Makkiyah",juz:30}];
+
+const JUZ30_SURAHS=ALL_SURAHS.filter(s=>s.juz===30);
+
+// FIX #8: Ganti \n dengan <br> agar teks tampil benar di HTML
+const shalatSteps=[
+    {title:"Niat",icon:"🤲",desc:"Niat shalat diucapkan dalam hati:",arabic:"أُصَلِّي فَرْضَ الصُّبْحِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى",latin:"Ushalli fardhas shubhi rak'ataini mustaqbilal qiblati adaa'an lillahi ta'ala",arti:"Aku niat shalat fardhu Subuh dua rakaat menghadap kiblat karena Allah Ta'ala"},
+    {title:"Takbiratul Ihram",icon:"🙌",desc:"Mengangkat kedua tangan sejajar telinga:",arabic:"اللَّهُ أَكْبَرُ",latin:"Allahu Akbar",arti:"Allah Maha Besar"},
+    {title:"Doa Iftitah",icon:"📖",desc:"Dibaca setelah takbiratul ihram:",arabic:"اللَّهُ أَكْبَرُ كَبِيرًا وَالْحَمْدُ لِلَّهِ كَثِيرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً ۞ إِنِّي وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالأَرْضَ حَنِيفًا مُسْلِمًا وَمَا أَنَا مِنَ الْمُشْرِكِينَ",latin:"Allahu Akbaru kabiraw walhamdu lillahi katsiraw wa subhanallahi bukrataw wa ashila... Innii wajjahtu wajhiya lilladzii fatharas samaawaati wal ardha haniifam muslimaw wa maa ana minal musyrikiin",arti:"Allah Maha Besar, segala puji bagi Allah dengan pujian yang banyak... Aku hadapkan wajahku kepada Dzat yang menciptakan langit dan bumi dengan penuh keikhlasan"},
+    {title:"Al-Fatihah",icon:"📖",desc:"Wajib dibaca di setiap rakaat:",arabic:"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ﴿١﴾ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾",latin:"Bismillahir rahmanir rahim. Alhamdu lillahi rabbil 'aalamiin. Ar-rahmanir rahim. Maaliki yawmid diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash shiraathal mustaqiim. Shiraathal ladziina an'amta 'alayhim ghayril maghdhuubi 'alayhim wa ladh-dhaalliin.",arti:"Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Segala puji bagi Allah, Tuhan seluruh alam. Yang Maha Pengasih, Maha Penyayang. Pemilik hari pembalasan. Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan. Tunjukilah kami jalan yang lurus. Yaitu jalan orang-orang yang telah Engkau beri nikmat, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat."},
+    {title:"Ruku",icon:"🙇",desc:"Membungkukkan badan:",arabic:"سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ",latin:"Subhaana rabbiyal 'adziimi wa bihamdih (3x)",arti:"Maha Suci Tuhanku Yang Maha Agung dan dengan memuji-Nya (3x)"},
+    {title:"I'tidal",icon:"🧍",desc:"Berdiri tegak setelah ruku:",arabic:"سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ — رَبَّنَا وَلَكَ الْحَمْدُ",latin:"Sami'allahu liman hamidah. Rabbanaa wa lakal hamdu.",arti:"Allah mendengar orang yang memuji-Nya. Wahai Tuhan kami, bagi-Mu segala puji."},
+    {title:"Sujud",icon:"🤲",desc:"Meletakkan dahi di lantai:",arabic:"سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",latin:"Subhaana rabbiyal a'laa wa bihamdih (3x)",arti:"Maha Suci Tuhanku Yang Maha Tinggi dan dengan memuji-Nya (3x)"},
+    {title:"Duduk Antara Sujud",icon:"🧎",desc:"Duduk di antara dua sujud:",arabic:"رَبِّ اغْفِرْ لِي وَارْحَمْنِي وَاجْبُرْنِي وَارْفَعْنِي وَارْزُقْنِي وَاهْدِنِي وَعَافِنِي وَاعْفُ عَنِّي",latin:"Rabbighfir lii warhamnii wajburnii warfa'nii warzuqnii wahdinii wa 'aafinii wa'fu 'annii",arti:"Ya Allah, ampunilah aku, rahmatilah aku, cukupkanlah aku, angkatlah derajatku, berilah aku rezeki, tunjukilah aku, sehatkanlah aku, dan maafkanlah aku"},
+    {title:"Tasyahud Awal",icon:"☝️",desc:"Duduk setelah rakaat kedua:",arabic:"التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ ۞ السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ ۞ السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ ۞ أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ",latin:"At-tahiyyaatul mubaarakaatush shalawaatuth thayyibaatu lillah. As-salaamu 'alayka ayyuhan nabiyyu wa rahmatullahi wa barakaatuh. As-salaamu 'alainaa wa 'alaa 'ibaadillahish shaalihiin. Asyhadu an laa ilaaha illallaah wa asyhadu anna muhammadan rasuulullaah.",arti:"Segala kehormatan, keberkahan, shalawat, dan kebaikan bagi Allah. Semoga keselamatan terlimpah atasmu wahai Nabi, juga rahmat dan berkah Allah. Semoga keselamatan atas kami dan hamba-hamba Allah yang shalih. Aku bersaksi tiada tuhan selain Allah dan Muhammad adalah utusan Allah."},
+    {title:"Tasyahud Akhir + Shalawat",icon:"☝️",desc:"Rakaat terakhir + shalawat Ibrahimiyah:",arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ وَبَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ فِي الْعَالَمِينَ إِنَّكَ حَمِيدٌ مَجِيدٌ",latin:"Allahumma shalli 'alaa Muhammad wa 'alaa aali Muhammad kamaa shallayta 'alaa Ibraahiim wa 'alaa aali Ibraahiim, wa baarik 'alaa Muhammad wa 'alaa aali Muhammad kamaa baarakta 'alaa Ibraahiim wa 'alaa aali Ibraahiim fil 'aalamiina innaka hamiidun majiid.",arti:"Ya Allah, rahmatilah Muhammad dan keluarga Muhammad sebagaimana Engkau merahmati Ibrahim dan keluarganya. Berkahilah Muhammad dan keluarganya sebagaimana Engkau memberkahi Ibrahim dan keluarganya di seluruh alam. Sungguh Engkau Maha Terpuji, Maha Mulia."},
+    {title:"Salam",icon:"👋",desc:"Menoleh ke kanan dan ke kiri:",arabic:"السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ",latin:"Assalaamu 'alaikum wa rahmatullah (ke kanan dan ke kiri)",arti:"Semoga keselamatan dan rahmat Allah terlimpah kepada kalian"}
+];
+
+const doaData={
+    ramadhan:[
+        {title:"Doa Niat Puasa",arabic:"نَوَيْتُ صَوْمَ غَدٍ عَنْ أَدَاءِ فَرْضِ شَهْرِ رَمَضَانَ هَذِهِ السَّنَةِ لِلَّهِ تَعَالَى",latin:"Nawaitu shauma ghadin 'an adaa'i fardhi syahri ramadhaana haadzihis sanati lillahi ta'aalaa",arti:"Aku niat puasa esok hari untuk menunaikan fardhu bulan Ramadhan tahun ini karena Allah Ta'ala"},
+        {title:"Doa Berbuka Puasa",arabic:"اللَّهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ",latin:"Allahumma laka shumtu wa bika aamantu wa 'alaa rizqika afthartu bi rahmatika yaa arhamar raahimiin",arti:"Ya Allah, untuk-Mu aku berpuasa, kepada-Mu aku beriman, dan dengan rezeki-Mu aku berbuka"},
+        {title:"Doa Lailatul Qadar",arabic:"اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",latin:"Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'annii",arti:"Ya Allah, Engkau Maha Pemaaf, Engkau menyukai maaf, maka maafkanlah aku"},
+        {title:"Doa Melihat Hilal",arabic:"اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْيُمْنِ وَالْإِيمَانِ وَالسَّلَامَةِ وَالْإِسْلَامِ رَبِّي وَرَبُّكَ اللَّهُ",latin:"Allahumma ahillahu 'alainaa bil yumni wal iimaani was salaamati wal islaam",arti:"Ya Allah, tampakkanlah bulan ini dengan keberuntungan, keimanan, keselamatan dan Islam"},
+        {title:"Doa Setelah Tarawih",arabic:"اللَّهُمَّ اجْعَلْنَا مِنَ الْفَائِزِينَ وَاكْتُبْنَا مِنَ الْمَقْبُولِينَ",latin:"Allahummaj'alnaa minal faa-iziin waktub naa minal maqbuuliin",arti:"Ya Allah, jadikanlah kami orang-orang yang beruntung dan catatlah kami yang diterima amalnya"}
+    ],
+    harian:[
+        {title:"Doa Bangun Tidur",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",latin:"Alhamdu lillahil ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin nusyuur",arti:"Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami"},
+        {title:"Doa Masuk Kamar Mandi",arabic:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",latin:"Allahumma innii a'uudzu bika minal khubutsi wal khabaa-its",arti:"Ya Allah, aku berlindung dari setan laki-laki dan perempuan"},
+        {title:"Doa Keluar Rumah",arabic:"بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ",latin:"Bismillahi tawakkaltu 'alallah, laa hawla wa laa quwwata illaa billah",arti:"Dengan nama Allah, aku bertawakal kepada Allah"},
+        {title:"Doa Masuk Masjid",arabic:"اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",latin:"Allahummaf-tah lii abwaaba rahmatik",arti:"Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu"},
+        {title:"Doa Keluar Masjid",arabic:"اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",latin:"Allahumma innii as-aluka min fadhlik",arti:"Ya Allah, aku memohon karunia-Mu"}
+    ],
+    makan:[
+        {title:"Doa Sebelum Makan",arabic:"بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ",latin:"Bismillahi wa 'alaa barakatillah",arti:"Dengan nama Allah dan atas berkah Allah"},
+        {title:"Doa Sesudah Makan",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِينَ",latin:"Alhamdu lillahil ladzii ath'amanaa wa saqaanaa wa ja'alanaa minal muslimiin",arti:"Segala puji bagi Allah yang memberi makan dan minum serta menjadikan kami muslim"}
+    ],
+    tidur:[
+        {title:"Doa Sebelum Tidur",arabic:"بِاسْمِكَ اللَّهُمَّ أَحْيَا وَأَمُوتُ",latin:"Bismikallaahumma ahyaa wa amuut",arti:"Dengan nama-Mu ya Allah, aku hidup dan aku mati"},
+        {title:"Doa Bangun Tidur",arabic:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",latin:"Alhamdu lillahil ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin nusyuur",arti:"Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami"}
+    ],
+    belajar:[
+        {title:"Doa Sebelum Belajar",arabic:"رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا",latin:"Rabbi zidnii 'ilman warzuqnii fahman",arti:"Ya Tuhanku, tambahkanlah aku ilmu dan berikanlah pemahaman"},
+        {title:"Doa Sesudah Belajar",arabic:"اللَّهُمَّ إِنِّي أَسْتَوْدِعُكَ مَا عَلَّمْتَنِيهِ فَارْدُدْهُ إِلَيَّ عِنْدَ حَاجَتِي",latin:"Allahumma innii astawdi'uka maa 'allamtaniihi fardud-hu ilayya 'inda haajatii",arti:"Ya Allah, aku titipkan apa yang telah Engkau ajarkan, kembalikanlah saat aku butuh"},
+        {title:"Doa Mohon Kemudahan",arabic:"اللَّهُمَّ لاَ سَهْلَ إِلاَّ مَا جَعَلْتَهُ سَهْلاً وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلاً",latin:"Allahumma laa sahla illaa maa ja'altahu sahlan wa anta taj'alul hazna idzaa syi'ta sahlan",arti:"Ya Allah, tidak ada kemudahan kecuali yang Engkau jadikan mudah"},
+        {title:"Doa untuk Orang Tua",arabic:"رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",latin:"Rabbir hamhumaa kamaa rabbayaanii shaghiiraa",arti:"Ya Tuhanku, sayangilah keduanya sebagaimana mereka mendidikku waktu kecil"}
+    ]
+};
+
+// ==================== GAS CODE ====================
+function generateGasCode(ssId){
+    const id=ssId||'MASUKKAN_SPREADSHEET_ID_DISINI';
+    return `// =============================================
+// KODE GOOGLE APPS SCRIPT - Amaliah Ramadhan 1447 H
+// SMAN 10 Pinrang
+// Spreadsheet ID sudah tertanam di baris bawah
+// =============================================
+
+const SPREADSHEET_ID = '${id}';
+
+function doGet(e){return handleRequest(e)}
+function doPost(e){return handleRequest(e)}
+
+function handleRequest(e){
+  if(!e||!e.parameter||!e.parameter.action){
+    const info={status:'success',message:'✅ API Amaliah Ramadhan 1447 H - SMAN 10 Pinrang aktif!',developer:'Murdani — 2026',version:'2.0',cara_pakai:'Tambahkan ?action=test di belakang URL'};
+    return ContentService.createTextOutput(JSON.stringify(info,null,2)).setMimeType(ContentService.MimeType.JSON);
+  }
+  const action=e.parameter.action;let result;
+  try{
+    switch(action){
+      case 'test':result=testConnection();break;
+      case 'init':result=initSheets();break;
+      case 'login':result=loginUser(e.parameter);break;
+      case 'getUsers':result=getUsers();break;
+      case 'addUser':result=addUser(e.parameter);break;
+      case 'deleteUser':result=deleteUser(e.parameter);break;
+      case 'insert':result=insertAmaliah(e.parameter);break;
+      case 'read':result=readAmaliah(e.parameter);break;
+      case 'setorHafalan':result=setorHafalan(e.parameter);break;
+      case 'readHafalan':result=readHafalan(e.parameter);break;
+      case 'nilaiHafalan':result=nilaiHafalan(e.parameter);break;
+      default:result={status:'error',message:'Action tidak dikenali: "'+action+'"'};
+    }
+  }catch(err){result={status:'error',message:'Terjadi kesalahan: '+err.toString()}}
+  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function getSpreadsheet(){return SpreadsheetApp.openById(SPREADSHEET_ID)}
+
+function getOrCreateSheet(name,headers){
+  const ss=getSpreadsheet();let sheet=ss.getSheetByName(name);
+  if(!sheet){sheet=ss.insertSheet(name);sheet.getRange(1,1,1,headers.length).setValues([headers]);sheet.getRange(1,1,1,headers.length).setBackground('#0d5c3f').setFontColor('white').setFontWeight('bold');sheet.setFrozenRows(1)}
+  return sheet;
+}
+
+function testConnection(){
+  try{const ss=getSpreadsheet();return{status:'success',message:'Koneksi berhasil! Spreadsheet: "'+ss.getName()+'"'}}
+  catch(err){return{status:'error',message:'Gagal! Error: '+err.toString()}}
+}
+
+function initSheets(){
+  const userHeaders=['Username','Password','Nama','Role','Kelas','Status'];
+  const amaliahHeaders=['Timestamp','Username','Nama','Kelas','Tanggal','HariKe','Subuh','Dzuhur','Ashar','Maghrib','Isya','Tarawih','Witir','Dhuha','Tahajud','Sahur','Puasa','Sedekah','Dzikir','JuzBaca','Halaman','HafalanSurat','Catatan'];
+  const hafalanHeaders=['Timestamp','Username','Nama','Kelas','Surat','NoSurat','DariAyat','SampaiAyat','CatatanSiswa','Status','Nilai','CatatanGuru','TglNilai','Penilai'];
+
+  const userSheet=getOrCreateSheet('Users',userHeaders);
+  getOrCreateSheet('DataAmaliah',amaliahHeaders);
+  getOrCreateSheet('SetorHafalan',hafalanHeaders);
+
+  const data=userSheet.getDataRange().getValues();
+  const existing=data.slice(1).map(r=>String(r[0]));
+
+  const defaults=[
+    ['admin','admin123','Administrator','admin','-','active'],
+    ['gurupai','guru123','Ustadz Ibrahim','guru','-','active'],
+    ['gurupai2','guru123','Ustadzah Maryam','guru','-','active'],
+    ['wali10a','wali123','Pak Ahmad S.Pd','wali','10-A','active'],
+    ['wali10b','wali123','Ibu Fatimah S.Pd','wali','10-B','active'],
+    ['wali11a','wali123','Pak Hasan M.Pd','wali','11-A','active'],
+    ['10001','siswa123','Muhammad Rizki','siswa','10-A','active'],
+    ['10002','siswa123','Aisyah Putri','siswa','10-A','active'],
+    ['10003','siswa123','Abdullah Faqih','siswa','10-B','active'],
+    ['10004','siswa123','Khadijah Zahra','siswa','11-A','active']
+  ];
+
+  let added=0;
+  defaults.forEach(acc=>{if(!existing.includes(acc[0])){userSheet.appendRow(acc);added++}});
+  return{status:'success',message:'Database siap! '+added+' akun ditambahkan. Sheet: Users, DataAmaliah, SetorHafalan.'};
+}
+
+function loginUser(p){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('Users');
+  if(!sheet)return{status:'error',message:'Sheet Users belum ada. Klik Init Database.'};
+  const data=sheet.getDataRange().getValues();
+  for(let i=1;i<data.length;i++){
+    if(String(data[i][0])===String(p.username)&&String(data[i][1])===String(p.password)&&String(data[i][3])===String(p.role)&&String(data[i][5])!=='inactive'){
+      return{status:'success',user:{username:data[i][0],nama:data[i][2],role:data[i][3],kelas:data[i][4]}};
+    }
+  }
+  return{status:'error',message:'Username/password salah atau role tidak sesuai!'};
+}
+
+function getUsers(){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('Users');
+  if(!sheet)return{status:'success',data:[]};
+  const data=sheet.getDataRange().getValues();const users=[];
+  for(let i=1;i<data.length;i++){users.push({username:data[i][0],nama:data[i][2],role:data[i][3],kelas:data[i][4],status:data[i][5],addedBy:data[i][6]||''})}
+  return{status:'success',data:users};
+}
+
+function addUser(p){
+  const sheet=getOrCreateSheet('Users',['Username','Password','Nama','Role','Kelas','Status','AddedBy']);
+  const data=sheet.getDataRange().getValues();
+  for(let i=1;i<data.length;i++){if(String(data[i][0])===String(p.username))return{status:'error',message:'NIS/Username sudah terdaftar!'}}
+  const addedBy=p.addedBy||'admin';
+  sheet.appendRow([p.username,p.password,p.nama,p.role||'siswa',p.kelas||'-','active',addedBy]);
+  return{status:'success',message:'Siswa "'+p.nama+'" ('+p.username+') berhasil ditambahkan!'};
+}
+
+function deleteUser(p){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('Users');
+  if(!sheet)return{status:'error',message:'Sheet tidak ditemukan'};
+  const data=sheet.getDataRange().getValues();
+  for(let i=1;i<data.length;i++){
+    if(String(data[i][0])===String(p.username)){
+      if(data[i][0]==='admin')return{status:'error',message:'Akun admin tidak bisa dihapus!'};
+      sheet.deleteRow(i+1);return{status:'success',message:'User berhasil dihapus!'};
+    }
+  }
+  return{status:'error',message:'User tidak ditemukan'};
+}
+
+function insertAmaliah(p){
+  const headers=['Timestamp','Username','Nama','Kelas','Tanggal','HariKe','Subuh','Dzuhur','Ashar','Maghrib','Isya','Tarawih','Witir','Dhuha','Tahajud','Sahur','Puasa','Sedekah','Dzikir','JuzBaca','Halaman','HafalanSurat','Catatan'];
+  const sheet=getOrCreateSheet('DataAmaliah',headers);
+  const data=sheet.getDataRange().getValues();
+  const row=[new Date(),p.username||'',p.nama||'',p.kelas||'',p.tanggal||'',p.hariKe||'',p.subuh||'',p.dzuhur||'',p.ashar||'',p.maghrib||'',p.isya||'',p.tarawih||'',p.witir||'',p.dhuha||'',p.tahajud||'',p.sahur||'',p.puasa||'',p.sedekah||'',p.dzikir||'',p.juzBaca||'',p.halaman||'',p.hafalanSurat||'',p.catatan||''];
+  for(let i=1;i<data.length;i++){
+    if(String(data[i][1])===String(p.username)&&String(data[i][5])===String(p.hariKe)){
+      sheet.getRange(i+1,1,1,row.length).setValues([row]);return{status:'success',message:'Amaliah hari ke-'+p.hariKe+' diperbarui!'};
+    }
+  }
+  sheet.appendRow(row);return{status:'success',message:'Amaliah hari ke-'+p.hariKe+' disimpan!'};
+}
+
+function readAmaliah(p){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('DataAmaliah');
+  if(!sheet)return{status:'success',data:[]};
+  const data=sheet.getDataRange().getValues();const headers=data[0];const rows=[];
+  for(let i=1;i<data.length;i++){
+    const row={};for(let j=0;j<headers.length;j++)row[headers[j]]=data[i][j];
+    if(p.role==='wali'&&p.kelas&&row.Kelas!==p.kelas)continue;
+    if(p.role==='siswa'&&p.username&&String(row.Username)!==String(p.username))continue;
+    rows.push(row);
+  }
+  return{status:'success',data:rows};
+}
+
+function setorHafalan(p){
+  const headers=['Timestamp','Username','Nama','Kelas','Surat','NoSurat','DariAyat','SampaiAyat','CatatanSiswa','Status','Nilai','CatatanGuru','TglNilai','Penilai'];
+  const sheet=getOrCreateSheet('SetorHafalan',headers);
+  sheet.appendRow([new Date(),p.username||'',p.nama||'',p.kelas||'',p.surat||'',p.noSurat||'',p.dariAyat||'1',p.sampaiAyat||'',p.catatanSiswa||'','Menunggu','','','','']);
+  return{status:'success',message:'Hafalan surat '+p.surat+' berhasil disetorkan! Menunggu penilaian guru.'};
+}
+
+function readHafalan(p){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('SetorHafalan');
+  if(!sheet)return{status:'success',data:[]};
+  const data=sheet.getDataRange().getValues();const headers=data[0];const rows=[];
+  for(let i=1;i<data.length;i++){
+    const row={};for(let j=0;j<headers.length;j++)row[headers[j]]=data[i][j];
+    row._rowIndex=i+1;
+    if(p.role==='siswa'&&p.username&&String(row.Username)!==String(p.username))continue;
+    if(p.role==='wali'&&p.kelas&&row.Kelas!==p.kelas)continue;
+    rows.push(row);
+  }
+  return{status:'success',data:rows};
+}
+
+function nilaiHafalan(p){
+  const ss=getSpreadsheet();const sheet=ss.getSheetByName('SetorHafalan');
+  if(!sheet)return{status:'error',message:'Sheet tidak ditemukan'};
+  const rowIdx=parseInt(p.rowIndex);
+  if(!rowIdx||isNaN(rowIdx))return{status:'error',message:'Row index tidak valid'};
+  sheet.getRange(rowIdx,10).setValue(p.status||'Menunggu');
+  sheet.getRange(rowIdx,11).setValue(p.nilai||'');
+  sheet.getRange(rowIdx,12).setValue(p.catatanGuru||'');
+  sheet.getRange(rowIdx,13).setValue(new Date());
+  sheet.getRange(rowIdx,14).setValue(p.penilai||'');
+  return{status:'success',message:'Penilaian hafalan berhasil disimpan!'};
+}`;
+}
+
+// ==================== KONFIGURASI URL GAS ====================
+// ✅ PASTE URL WEB APP GOOGLE APPS SCRIPT ANDA DI BAWAH INI:
+const GAS_URL_EMBEDDED = 'https://script.google.com/macros/s/AKfycbxYaCqlgsE2wGn8U6ZBWrtO7nxfXnvUAkGWNOrVTMbpMmtSvzDNxijFxP3f-rmqUjQ-EQ/exec';
+// ==============================================================
+
+// ==================== STATE ====================
+let currentUser=null,currentSurahNo=1,surahCache={},allAmaliahData=[],allUsersData=[],allHafalanData=[],hmSelectedStatus='';
+let allSiswakuData=[];
+
+// ==================== INIT ====================
+document.addEventListener('DOMContentLoaded',function(){
+    const saved=localStorage.getItem('amaliahUser');
+    if(saved){try{currentUser=JSON.parse(saved);showMainApp()}catch(e){localStorage.removeItem('amaliahUser')}}
+    updateGasCodeDisplay();updateIdStatus();
+    // Pre-select siswa role on load
+    selectRole('siswa');
+});
+
+// ==================== LOGIN ====================
+function selectRole(role){
+    document.getElementById('loginRole').value=role;
+    document.querySelectorAll('.role-card').forEach(b=>{
+        const isSelected=b.dataset.role===role;
+        const colors={siswa:'border-emerald-500 bg-emerald-50',guru:'border-green-500 bg-green-50',wali:'border-amber-500 bg-amber-50',admin:'border-purple-500 bg-purple-50'};
+        if(isSelected){
+            b.className=`role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 ${colors[role]} transition text-center selected-role ring-2 ring-offset-1 ${role==='siswa'?'ring-emerald-400':role==='guru'?'ring-green-400':role==='wali'?'ring-amber-400':'ring-purple-400'}`;
+        }else{
+            b.className='role-card flex flex-col items-center gap-1 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 hover:border-gray-300 transition text-center';
+        }
+    });
+    const labels={siswa:'📋 NIS',guru:'👨‍🏫 Username',wali:'👩‍🏫 Username',admin:'👨‍💼 Username'};
+    const icons={siswa:'🆔',guru:'👤',wali:'👤',admin:'👤'};
+    const placeholders={siswa:'Masukkan NIS',guru:'Masukkan username',wali:'Masukkan username',admin:'Masukkan username'};
+    document.getElementById('loginIdLabel').textContent=labels[role];
+    document.getElementById('loginIdIcon').textContent=icons[role];
+    document.getElementById('loginId').placeholder=placeholders[role];
+}
+function updateLoginLabel(){}
+function togglePw(){const pw=document.getElementById('loginPassword');pw.type=pw.type==='password'?'text':'password'}
+function setLoginMode(){}
+function quickLogin(){}
+function tryDemoLogin(){}
+
+function doLogin(){
+    const role=document.getElementById('loginRole').value;
+    const username=document.getElementById('loginId').value.trim();
+    const password=document.getElementById('loginPassword').value.trim();
+    const errDiv=document.getElementById('loginError');
+    const errMsg=document.getElementById('loginErrorMsg');
+    if(!username||!password){errMsg.textContent='Mohon isi username/NIS dan password!';errDiv.classList.remove('hidden');return}
+    const btn=document.getElementById('btnLogin');btn.disabled=true;btn.innerHTML='<svg class="animate-spin w-4 h-4 inline mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg> Memproses...';
+    errDiv.classList.add('hidden');
+    const gasUrl=getGasUrl();
+    if(!gasUrl){errMsg.textContent='URL Google Apps Script belum dikonfigurasi. Hubungi Administrator.';errDiv.classList.remove('hidden');btn.disabled=false;btn.innerHTML='🔐 Masuk';return}
+    fetch(`${gasUrl}?${new URLSearchParams({action:'login',username,password,role})}`)
+        .then(r=>r.json()).then(data=>{
+            if(data.status==='success'){
+                currentUser={...data.user,mode:'real'};
+                localStorage.setItem('amaliahUser',JSON.stringify(currentUser));
+                localStorage.removeItem('amaliahOfflineMode');
+                showMainApp();
+            }else{errMsg.textContent=data.message||'Username, password, atau role salah!';errDiv.classList.remove('hidden')}
+        }).catch(()=>{errMsg.textContent='Gagal terhubung ke server. Periksa koneksi internet.';errDiv.classList.remove('hidden')})
+        .finally(()=>{btn.disabled=false;btn.innerHTML='🔐 Masuk'});
+}
+
+function doLogout(){if(confirm('Yakin ingin keluar?')){currentUser=null;localStorage.removeItem('amaliahUser');localStorage.removeItem('amaliahOfflineMode');document.getElementById('mainApp').classList.add('hidden');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('loginId').value='';document.getElementById('loginPassword').value=''}}
+
+// ==================== MAIN APP ====================
+function showMainApp(){
+    document.getElementById('loginScreen').classList.add('hidden');document.getElementById('mainApp').classList.remove('hidden');
+    document.getElementById('headerName').textContent=currentUser.nama;
+    const roleLabel=ROLE_LABELS[currentUser.role]+(currentUser.kelas&&currentUser.kelas!=='-'?' — '+currentUser.kelas:'');
+    document.getElementById('headerRole').textContent=roleLabel;
+    document.getElementById('headerAvatar').textContent=ROLE_AVATARS[currentUser.role];
+    document.getElementById('welcomeMsg').textContent='Ahlan wa Sahlan, '+currentUser.nama+'! 🌙 Semoga Ramadhan penuh berkah.';
+    startClock();
+    buildNavigation();initFormFields();initRamadhanDays();renderSurahList();buildShalatNav();showShalatStep(0);buildDoaNav();showDoaCategory('ramadhan');renderDashboard();loadSetupFields();initHafalanForm();renderJuz30List();showTab('beranda');
+    if(currentUser.role==='wali'||currentUser.role==='guru'){initSiswakuTab()}
+}
+
+// ==================== CLOCK & DATE ====================
+let _clockInterval=null;
+const HARI_RAMADHAN_START=new Date('2026-02-28'); // estimasi awal Ramadhan 1447H
+const HARI_ID=['Ahad','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+const BULAN_ID=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+function startClock(){
+    if(_clockInterval)clearInterval(_clockInterval);
+    function tick(){
+        const now=new Date();
+        const hh=String(now.getHours()).padStart(2,'0');
+        const mm=String(now.getMinutes()).padStart(2,'0');
+        const ss=String(now.getSeconds()).padStart(2,'0');
+        const clockEl=document.getElementById('liveClock');
+        if(clockEl)clockEl.textContent=`${hh}:${mm}:${ss}`;
+        const dateEl=document.getElementById('liveDate');
+        if(dateEl)dateEl.textContent=`${HARI_ID[now.getDay()]}, ${now.getDate()} ${BULAN_ID[now.getMonth()]} ${now.getFullYear()}`;
+        const diffMs=now-HARI_RAMADHAN_START;
+        const hariKe=Math.max(1,Math.min(30,Math.floor(diffMs/(1000*60*60*24))+1));
+        const hariKeEl=document.getElementById('liveHariKe');
+        if(hariKeEl)hariKeEl.textContent=`Hari Ramadhan ${hariKe}`;
+        const heroHari=document.getElementById('hariRamadhanHero');
+        if(heroHari)heroHari.textContent=hariKe;
+        const heroTgl=document.getElementById('tanggalHero');
+        if(heroTgl)heroTgl.textContent=`${now.getDate()} ${BULAN_ID[now.getMonth()]}`;
+    }
+    tick();_clockInterval=setInterval(tick,1000);
+}
+
+function buildNavigation(){
+    const items=NAV_ITEMS[currentUser.role]||NAV_ITEMS.siswa;
+    document.getElementById('navContainer').innerHTML=items.map((item,i)=>`<button onclick="showTab('${item.id}')" class="nav-btn px-3 py-3 text-white text-xs font-medium flex items-center gap-1 hover:bg-emerald-800 transition whitespace-nowrap ${i===0?'nav-active':''}" data-tab="${item.id}">${item.icon} <span class="hidden sm:inline">${item.label}</span></button>`).join('');
+}
+
+function showTab(tabName){
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('nav-active'));
+    const tab=document.getElementById('tab-'+tabName);if(tab)tab.classList.add('active');
+    const btn=document.querySelector(`[data-tab="${tabName}"]`);if(btn)btn.classList.add('nav-active');
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ==================== DASHBOARD ====================
+function renderDashboard(){
+    const d=document.getElementById('dashboardContent');
+    const now=new Date();
+    const diffMs=now-HARI_RAMADHAN_START;
+    const hariKe=Math.max(1,Math.min(30,Math.floor(diffMs/(1000*60*60*24))+1));
+    const pctRamadhan=Math.round(hariKe/30*100);
+
+    if(currentUser.role==='siswa'){
+        d.innerHTML=`
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-emerald-600 group" onclick="showTab('amaliah')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">✅</div>
+                <h4 class="font-bold text-emerald-800 text-sm">Isi Amaliah</h4>
+                <p class="text-xs text-gray-400 mt-1">Hari ini</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-green-500 group" onclick="showTab('hafalan')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📗</div>
+                <h4 class="font-bold text-emerald-800 text-sm">Setor Hafalan</h4>
+                <p class="text-xs text-gray-400 mt-1">Juz 30</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-amber-500 group" onclick="showTab('quran')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📖</div>
+                <h4 class="font-bold text-emerald-800 text-sm">Baca Al-Quran</h4>
+                <p class="text-xs text-gray-400 mt-1">114 Surat</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-purple-500 group" onclick="showTab('progress')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📈</div>
+                <h4 class="font-bold text-emerald-800 text-sm">Progress Saya</h4>
+                <p class="text-xs text-gray-400 mt-1">Statistik</p>
+            </div>
+        </div>
+        <!-- Ramadhan progress -->
+        <div class="bg-white rounded-2xl shadow-md p-5 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-gray-700">🌙 Progress Ramadhan ${hariKe}/30 hari</span>
+                <span class="text-sm font-bold text-emerald-600">${pctRamadhan}%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill bg-gradient-to-r from-emerald-500 to-emerald-600" style="width:${pctRamadhan}%"></div></div>
+            <div class="grid grid-cols-3 gap-3 mt-4 text-center">
+                <div class="bg-emerald-50 rounded-xl p-3"><div class="text-xl font-bold text-emerald-700">${hariKe}</div><div class="text-xs text-gray-500">Hari Berjalan</div></div>
+                <div class="bg-amber-50 rounded-xl p-3"><div class="text-xl font-bold text-amber-600">${30-hariKe}</div><div class="text-xs text-gray-500">Hari Tersisa</div></div>
+                <div class="bg-purple-50 rounded-xl p-3"><div class="text-xl font-bold text-purple-600">37</div><div class="text-xs text-gray-500">Target Surat</div></div>
+            </div>
+        </div>
+        <!-- Panduan -->
+        <div class="bg-white rounded-2xl shadow-md p-5">
+            <h3 class="text-base font-bold text-emerald-800 mb-3">📋 Target Ibadah Ramadhan</h3>
+            <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-emerald-50 rounded-xl p-4 border-l-4 border-emerald-500">
+                    <h4 class="font-bold text-emerald-700 mb-2 text-sm">🌅 Ibadah Wajib</h4>
+                    <ul class="text-xs text-gray-600 space-y-1.5"><li class="flex items-center gap-1.5">✅ Puasa Ramadhan penuh</li><li class="flex items-center gap-1.5">✅ Shalat 5 waktu tepat</li><li class="flex items-center gap-1.5">✅ Zakat Fitrah</li></ul>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-4 border-l-4 border-amber-500">
+                    <h4 class="font-bold text-amber-700 mb-2 text-sm">⭐ Ibadah Sunnah</h4>
+                    <ul class="text-xs text-gray-600 space-y-1.5"><li class="flex items-center gap-1.5">✅ Tarawih &amp; Witir</li><li class="flex items-center gap-1.5">✅ Tadarus Al-Quran</li><li class="flex items-center gap-1.5">✅ Sahur &amp; Sedekah</li></ul>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-700 mb-2 text-sm">📗 Target Hafalan</h4>
+                    <ul class="text-xs text-gray-600 space-y-1.5"><li class="flex items-center gap-1.5">✅ Hafal Juz 30</li><li class="flex items-center gap-1.5">✅ Setor ke Guru PAI</li><li class="flex items-center gap-1.5">✅ Target 37 surat</li></ul>
+                </div>
+            </div>
+        </div>`;
+    }else if(currentUser.role==='guru'){
+        d.innerHTML=`
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-blue-500 group" onclick="showTab('siswaku')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">👨‍🎓</div>
+                <h4 class="font-bold text-gray-800 text-sm">Siswa Saya</h4>
+                <p class="text-xs text-gray-400 mt-1">Tambah & kelola</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-green-600 group" onclick="showTab('datahafalan')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📗</div>
+                <h4 class="font-bold text-gray-800 text-sm">Nilai Hafalan</h4>
+                <p class="text-xs text-gray-400 mt-1">Penilaian</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-emerald-600 group" onclick="showTab('data')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📊</div>
+                <h4 class="font-bold text-gray-800 text-sm">Data Amaliah</h4>
+                <p class="text-xs text-gray-400 mt-1">Rekap siswa</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-amber-500 group" onclick="showTab('quran')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📖</div>
+                <h4 class="font-bold text-gray-800 text-sm">Al-Quran</h4>
+                <p class="text-xs text-gray-400 mt-1">Baca & rujuk</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-5">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-gray-700">🌙 Progress Ramadhan ${hariKe}/30 hari</span>
+                <span class="text-sm font-bold text-emerald-600">${pctRamadhan}%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill bg-gradient-to-r from-green-500 to-emerald-600" style="width:${pctRamadhan}%"></div></div>
+        </div>`;
+    }else if(currentUser.role==='wali'){
+        d.innerHTML=`
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-blue-500 group" onclick="showTab('siswaku')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">👨‍🎓</div>
+                <h4 class="font-bold text-gray-800 text-sm">Siswa Wali</h4>
+                <p class="text-xs text-gray-400 mt-1">Kelas ${currentUser.kelas}</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-emerald-600 group" onclick="showTab('data')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📊</div>
+                <h4 class="font-bold text-gray-800 text-sm">Data Amaliah</h4>
+                <p class="text-xs text-gray-400 mt-1">Kelas ${currentUser.kelas}</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-green-500 group" onclick="showTab('datahafalan')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📗</div>
+                <h4 class="font-bold text-gray-800 text-sm">Hafalan Kelas</h4>
+                <p class="text-xs text-gray-400 mt-1">Pantau</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-amber-500 group" onclick="showTab('quran')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📖</div>
+                <h4 class="font-bold text-gray-800 text-sm">Al-Quran</h4>
+                <p class="text-xs text-gray-400 mt-1">Baca</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-5">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-gray-700">🌙 Progress Ramadhan ${hariKe}/30 hari</span>
+                <span class="text-sm font-bold text-emerald-600">${pctRamadhan}%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill bg-gradient-to-r from-amber-400 to-amber-500" style="width:${pctRamadhan}%"></div></div>
+        </div>`;
+    }else{
+        d.innerHTML=`
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-emerald-600 group" onclick="showTab('data')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📊</div>
+                <h4 class="font-bold text-gray-800 text-sm">Data Amaliah</h4><p class="text-xs text-gray-400 mt-1">Semua siswa</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-green-500 group" onclick="showTab('datahafalan')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">📗</div>
+                <h4 class="font-bold text-gray-800 text-sm">Hafalan</h4><p class="text-xs text-gray-400 mt-1">Rekap</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-amber-500 group" onclick="showTab('users')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">👥</div>
+                <h4 class="font-bold text-gray-800 text-sm">Kelola User</h4><p class="text-xs text-gray-400 mt-1">Akun</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md cursor-pointer border-t-4 border-purple-500 group" onclick="showTab('setup')">
+                <div class="text-3xl mb-2 group-hover:scale-110 transition-transform">⚙️</div>
+                <h4 class="font-bold text-gray-800 text-sm">Setup</h4><p class="text-xs text-gray-400 mt-1">Konfigurasi</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-5">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold text-gray-700">🌙 Progress Ramadhan ${hariKe}/30 hari</span>
+                <span class="text-sm font-bold text-purple-600">${pctRamadhan}%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill bg-gradient-to-r from-purple-500 to-purple-700" style="width:${pctRamadhan}%"></div></div>
+        </div>`;
+    }
+}
+
+// ==================== FORM ====================
+function initFormFields(){
+    const sel=document.getElementById('amHari');
+    // FIX: Bersihkan dulu sebelum menambah agar tidak duplikat saat re-init
+    sel.innerHTML='<option value="">Pilih Hari</option>';
+    for(let i=1;i<=30;i++){const o=document.createElement('option');o.value=i;o.textContent='Hari ke-'+i;sel.appendChild(o)}
+    const juz=document.getElementById('amJuz');
+    juz.innerHTML='<option value="">Pilih Juz</option>';
+    for(let i=1;i<=30;i++){const o=document.createElement('option');o.value=i;o.textContent='Juz '+i;juz.appendChild(o)}
+    document.getElementById('amTanggal').value=new Date().toISOString().split('T')[0];
+}
+
+// FIX: Gunakan data attribute untuk track status hari tracker
+function initRamadhanDays(){
+    const c=document.getElementById('ramadhanDays');let h='';
+    for(let i=1;i<=30;i++){
+        h+=`<div class="ramadhan-day bg-emerald-100 text-emerald-800 rounded-lg p-2 text-center text-sm font-semibold cursor-pointer hover:scale-105 transition-transform" onclick="toggleRamadhanDay(this)" data-active="0">${i}</div>`;
+    }
+    c.innerHTML=h;updateTrackerCount();
+}
+function toggleRamadhanDay(el){
+    const active=el.dataset.active==='1';
+    if(active){el.dataset.active='0';el.className='ramadhan-day bg-emerald-100 text-emerald-800 rounded-lg p-2 text-center text-sm font-semibold cursor-pointer hover:scale-105 transition-transform'}
+    else{el.dataset.active='1';el.className='ramadhan-day bg-amber-400 text-white rounded-lg p-2 text-center text-sm font-semibold cursor-pointer hover:scale-105 transition-transform shadow-md'}
+    updateTrackerCount();
+}
+function updateTrackerCount(){
+    const count=document.querySelectorAll('.ramadhan-day[data-active="1"]').length;
+    const el=document.getElementById('trackerCount');if(el)el.textContent=`${count}/30 hari`;
+}
+
+// ==================== SETOR HAFALAN ====================
+// FIX #2: Gunakan flag agar event listener tidak ditambah berulang
+let hafalanFormInited=false;
+function initHafalanForm(){
+    const sel=document.getElementById('hfSurat');if(!sel)return;
+    // Selalu rebuild options
+    sel.innerHTML='<option value="">Pilih Surat</option>';
+    JUZ30_SURAHS.forEach(s=>{const o=document.createElement('option');o.value=s.name;o.textContent=s.no+'. '+s.name+' ('+s.ar+') - '+s.ayat+' ayat';o.dataset.ayat=s.ayat;o.dataset.no=s.no;sel.appendChild(o)});
+    // FIX #2: Pasang event listener hanya sekali
+    if(!hafalanFormInited){
+        sel.addEventListener('change',function(){
+            const opt=this.selectedOptions[0];
+            if(opt&&opt.dataset.ayat){document.getElementById('hfSampaiAyat').value=opt.dataset.ayat;document.getElementById('hfDariAyat').value=1}
+            else{document.getElementById('hfSampaiAyat').value='';document.getElementById('hfDariAyat').value=1}
+        });
+        hafalanFormInited=true;
+    }
+    document.getElementById('hfTanggal').value=new Date().toISOString().split('T')[0];
+}
+
+function renderJuz30List(){
+    const c=document.getElementById('juz30SurahList');if(!c)return;
+    c.innerHTML=JUZ30_SURAHS.map(s=>`<div class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-emerald-400 hover:shadow-md transition cursor-pointer" onclick="openSurah(${s.no})"><div class="w-9 h-9 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0">${s.no}</div><div class="flex-1 min-w-0"><h4 class="font-semibold text-emerald-800 text-sm">${s.name}</h4><p class="text-xs text-gray-500">${s.arti} • ${s.ayat} ayat</p></div><div class="arabic text-lg gold-text flex-shrink-0">${s.ar}</div></div>`).join('');
+}
+
+function submitSetorHafalan(){
+    const sel=document.getElementById('hfSurat');
+    const surat=sel.value;
+    if(!surat){showToast('⚠️ Pilih surat terlebih dahulu!');return}
+    const opt=sel.selectedOptions[0];
+    // FIX #3: Konsistenkan key data dengan PascalCase agar cocok dengan renderMyHafalan
+    const data={
+        action:'setorHafalan',
+        username:currentUser.username,
+        nama:currentUser.nama,
+        kelas:currentUser.kelas,
+        surat:surat,
+        noSurat:opt.dataset.no||'',
+        dariAyat:document.getElementById('hfDariAyat').value||'1',
+        sampaiAyat:document.getElementById('hfSampaiAyat').value||'',
+        catatanSiswa:document.getElementById('hfCatatan').value||''
+    };
+    const url=getGasUrl();const btn=document.getElementById('btnSetorHafalan');btn.disabled=true;btn.innerHTML='⏳ Mengirim...';
+    if(!url){
+        // FIX #3 & #5: Simpan lokal dengan key PascalCase konsisten
+        let local=JSON.parse(localStorage.getItem('hafalanLocal')||'[]');
+        const localEntry={
+            Timestamp:new Date().toISOString(),
+            Username:currentUser.username,
+            Nama:currentUser.nama,
+            Kelas:currentUser.kelas,
+            Surat:surat,
+            NoSurat:opt.dataset.no||'',
+            DariAyat:data.dariAyat,
+            SampaiAyat:data.sampaiAyat,
+            CatatanSiswa:data.catatanSiswa,
+            Status:'Menunggu',Nilai:'',CatatanGuru:'',
+            // FIX #6: Berikan _rowIndex dummy agar tidak error
+            _rowIndex:null
+        };
+        local.push(localEntry);
+        localStorage.setItem('hafalanLocal',JSON.stringify(local));
+        showToast('✅ Hafalan disimpan lokal! Hubungkan GAS untuk kirim ke guru.');
+        btn.disabled=false;btn.innerHTML='📤 Setor Hafalan ke Guru PAI';
+        return;
+    }
+    fetch(`${url}?${new URLSearchParams(data)}`).then(r=>r.json()).then(res=>{
+        showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);
+        if(res.status==='success'){
+            // Reset form setelah berhasil
+            document.getElementById('hfSurat').value='';
+            document.getElementById('hfDariAyat').value=1;
+            document.getElementById('hfSampaiAyat').value='';
+            document.getElementById('hfCatatan').value='';
+        }
+    }).catch(err=>showToast('❌ '+err.message)).finally(()=>{btn.disabled=false;btn.innerHTML='📤 Setor Hafalan ke Guru PAI'});
+}
+
+function loadMyHafalan(){
+    const url=getGasUrl();
+    if(!url){
+        // FIX #5: Filter menggunakan key PascalCase yang konsisten
+        const data=JSON.parse(localStorage.getItem('hafalanLocal')||'[]').filter(r=>r.Username===currentUser.username);
+        renderMyHafalan(data);
+        return;
+    }
+    document.getElementById('myHafalanList').innerHTML='<p class="text-center text-blue-500 py-6">🔄 Memuat...</p>';
+    fetch(`${url}?${new URLSearchParams({action:'readHafalan',role:'siswa',username:currentUser.username})}`).then(r=>r.json()).then(res=>{if(res.status==='success')renderMyHafalan(res.data)}).catch(err=>document.getElementById('myHafalanList').innerHTML=`<p class="text-center text-red-500 py-6">❌ ${err.message}</p>`);
+}
+
+// FIX #4: Tangani tanggal invalid dengan aman
+function formatTanggal(ts){
+    if(!ts)return'-';
+    try{const d=new Date(ts);return isNaN(d.getTime())?String(ts).substring(0,10):d.toLocaleDateString('id-ID')}
+    catch(e){return String(ts).substring(0,10)||'-'}
+}
+
+function renderMyHafalan(data){
+    if(!data||!data.length){document.getElementById('myHafalanList').innerHTML='<p class="text-gray-400 text-center py-6">Belum ada setoran hafalan</p>';return}
+    document.getElementById('myHafalanList').innerHTML=data.map(r=>{
+        const st=r.Status||r.status||'Menunggu';
+        const stClass=st==='Lancar'?'status-lancar':st==='Kurang Lancar'?'status-kurang':st==='Belum Lancar'?'status-belum':'status-menunggu';
+        const stIcon=st==='Menunggu'?'⏳':st==='Lancar'?'✅':st==='Kurang Lancar'?'⚠️':'❌';
+        const surat=r.Surat||r.surat||'';
+        const dari=r.DariAyat||r.dariAyat||1;
+        const sampai=r.SampaiAyat||r.sampaiAyat||'';
+        const nilai=r.Nilai||r.nilai||'';
+        const catatanGuru=r.CatatanGuru||r.catatanGuru||'';
+        return`<div class="hafalan-card border rounded-xl p-4 mb-3">
+            <div class="flex justify-between items-start">
+                <div><h4 class="font-semibold text-emerald-800">${surat}</h4>
+                <p class="text-xs text-gray-500">Ayat ${dari} - ${sampai} • ${formatTanggal(r.Timestamp||r.tanggal)}</p></div>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold ${stClass}">${stIcon} ${st}</span>
+            </div>
+            ${nilai?`<p class="text-sm mt-2"><strong>Nilai:</strong> ${nilai}</p>`:''}
+            ${catatanGuru?`<p class="text-sm text-gray-600 mt-1"><strong>Catatan Guru:</strong> ${catatanGuru}</p>`:''}
+        </div>`;
+    }).join('');
+}
+
+// ==================== DATA HAFALAN (GURU) ====================
+function loadAllHafalan(){
+    const url=getGasUrl();
+    if(!url){const local=JSON.parse(localStorage.getItem('hafalanLocal')||'[]');allHafalanData=local;renderHafalanTable(local);showToast('📋 Data lokal dimuat.');return}
+    document.getElementById('hafalanBody').innerHTML='<tr><td colspan="9" class="text-center py-8 text-blue-500">🔄 Memuat...</td></tr>';
+    fetch(`${url}?${new URLSearchParams({action:'readHafalan',role:currentUser.role,kelas:currentUser.kelas||'',username:currentUser.username})}`).then(r=>r.json()).then(res=>{if(res.status==='success'){allHafalanData=res.data;renderHafalanTable(res.data)}}).catch(err=>document.getElementById('hafalanBody').innerHTML=`<tr><td colspan="9" class="text-center py-8 text-red-500">❌ ${err.message}</td></tr>`);
+}
+
+function renderHafalanTable(data){
+    if(!data||!data.length){document.getElementById('hafalanBody').innerHTML='<tr><td colspan="9" class="text-center py-8 text-gray-400">Belum ada data</td></tr>';return}
+    document.getElementById('hafalanBody').innerHTML=data.map((r,i)=>{
+        const st=r.Status||r.status||'Menunggu';
+        const stClass=st==='Lancar'?'status-lancar':st==='Kurang Lancar'?'status-kurang':st==='Belum Lancar'?'status-belum':'status-menunggu';
+        const canNilai=(currentUser.role==='guru'||currentUser.role==='admin');
+        return`<tr class="${i%2===0?'bg-white':'bg-gray-50'} hover:bg-amber-50"><td class="px-2 py-2 text-center">${i+1}</td><td class="px-2 py-2 font-medium">${r.Nama||r.nama||''}</td><td class="px-2 py-2 text-center">${r.Kelas||r.kelas||''}</td><td class="px-2 py-2">${r.Surat||r.surat||''}</td><td class="px-2 py-2 text-center">${r.DariAyat||r.dariAyat||1}-${r.SampaiAyat||r.sampaiAyat||''}</td><td class="px-2 py-2 text-center text-xs">${formatTanggal(r.Timestamp)}</td><td class="px-2 py-2 text-center"><span class="px-2 py-0.5 rounded-full text-xs font-medium ${stClass}">${st}</span></td><td class="px-2 py-2 text-center font-bold">${r.Nilai||r.nilai||'-'}</td><td class="px-2 py-2 text-center">${canNilai?`<button onclick="openPenilaian(${i})" class="bg-amber-500 hover:bg-amber-600 text-white px-2 py-1 rounded text-xs">📝 Nilai</button>`:'-'}</td></tr>`;
+    }).join('');
+}
+
+// FIX #7: Gunakan safe access dengan || '' agar tidak error jika elemen tidak ada di DOM
+function filterHafalanData(){
+    const searchEl=document.getElementById('searchHafalan');
+    const statusEl=document.getElementById('filterHafalanStatus');
+    const search=(searchEl?searchEl.value:'').toLowerCase();
+    const status=statusEl?statusEl.value:'';
+    renderHafalanTable(allHafalanData.filter(r=>{
+        const nama=(r.Nama||r.nama||'').toLowerCase();
+        const st=r.Status||r.status||'';
+        return nama.includes(search)&&(!status||st===status);
+    }));
+}
+
+// FIX #15: Reset hmSelectedStatus sesuai data yang dibuka
+function openPenilaian(idx){
+    const r=allHafalanData[idx];if(!r)return;
+    document.getElementById('hmRowIndex').value=r._rowIndex||'';
+    document.getElementById('hmNama').textContent=r.Nama||r.nama||'';
+    document.getElementById('hmSurat').textContent=r.Surat||r.surat||'';
+    document.getElementById('hmAyat').textContent=(r.DariAyat||r.dariAyat||1)+' - '+(r.SampaiAyat||r.sampaiAyat||'');
+    document.getElementById('hmNilai').value=r.Nilai||r.nilai||'';
+    document.getElementById('hmCatatanGuru').value=r.CatatanGuru||r.catatanGuru||'';
+    // FIX #15: Reset ke status dari data atau kosong
+    hmSelectedStatus=r.Status||r.status||'';
+    updateHmStatusBtns();
+    document.getElementById('hafalanModal').classList.add('show');document.body.style.overflow='hidden';
+}
+
+function setHmStatus(val){hmSelectedStatus=val;updateHmStatusBtns()}
+function updateHmStatusBtns(){
+    document.querySelectorAll('.hm-status-btn').forEach(b=>{
+        const isActive=b.dataset.val===hmSelectedStatus;
+        b.classList.toggle('border-emerald-600',isActive);
+        b.classList.toggle('ring-2',isActive);
+        b.classList.toggle('ring-emerald-400',isActive);
+    });
+}
+function closeHafalanModal(){document.getElementById('hafalanModal').classList.remove('show');document.body.style.overflow='auto'}
+
+function submitPenilaianHafalan(){
+    if(!hmSelectedStatus){showToast('⚠️ Pilih status penilaian terlebih dahulu!');return}
+    const url=getGasUrl();if(!url){showToast('⚠️ Hubungkan GAS terlebih dahulu untuk menyimpan penilaian!');return}
+    const rowIndex=document.getElementById('hmRowIndex').value;
+    if(!rowIndex){showToast('⚠️ Data baris tidak valid (hanya tersedia pada data dari Spreadsheet)!');return}
+    const data={action:'nilaiHafalan',rowIndex,status:hmSelectedStatus,nilai:document.getElementById('hmNilai').value,catatanGuru:document.getElementById('hmCatatanGuru').value,penilai:currentUser.nama};
+    fetch(`${url}?${new URLSearchParams(data)}`).then(r=>r.json()).then(res=>{showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);if(res.status==='success'){closeHafalanModal();loadAllHafalan()}}).catch(err=>showToast('❌ '+err.message));
+}
+
+// ==================== AL-QURAN ====================
+function showQuranView(view){
+    document.getElementById('quranSurahView').classList.toggle('hidden',view!=='surah');document.getElementById('quranJuzView').classList.toggle('hidden',view!=='juz');
+    document.getElementById('btnViewSurah').className=view==='surah'?'bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition':'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition';
+    document.getElementById('btnViewJuz').className=view==='juz'?'bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition':'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition';
+    if(view==='juz')renderJuzList();
+}
+
+// FIX #1: Escape input sebelum filter agar tidak error pada karakter khusus
+function escapeRegex(str){return str.replace(/[.*+?^${}()|[\]\\]/g,'\$&')}
+
+function renderSurahList(filter=''){
+    const c=document.getElementById('surahListContainer');
+    const fl=filter.toLowerCase();
+    const filtered=ALL_SURAHS.filter(s=>
+        s.name.toLowerCase().includes(fl)||
+        s.arti.toLowerCase().includes(fl)||
+        s.ar.includes(filter)  // Arabic filter tanpa lowercase
+    );
+    c.innerHTML=filtered.length?filtered.map(s=>`<div class="surah-item flex items-center gap-3 p-3 rounded-xl border border-gray-100 cursor-pointer hover:border-emerald-400 hover:shadow-md transition" onclick="openSurah(${s.no})"><div class="w-9 h-9 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0">${s.no}</div><div class="flex-1 min-w-0"><h4 class="font-semibold text-emerald-800 text-sm">${s.name}</h4><p class="text-xs text-gray-500 truncate">${s.arti} • ${s.ayat} ayat • ${s.type}</p></div><div class="arabic text-lg gold-text flex-shrink-0">${s.ar}</div></div>`).join(''):'<p class="col-span-2 text-center text-gray-400 py-6">Surat tidak ditemukan</p>';
+}
+function filterSurahList(){renderSurahList(document.getElementById('searchSurah').value||'')}
+function renderJuzList(){
+    const c=document.getElementById('juzListContainer');let html='';
+    for(let j=1;j<=30;j++){const surahs=ALL_SURAHS.filter(s=>s.juz===j);const names=surahs.length>2?surahs[0].name+' - '+surahs[surahs.length-1].name:surahs.map(s=>s.name).join(', ');
+    html+=`<div class="bg-white rounded-xl p-4 border border-gray-200 cursor-pointer hover:border-emerald-400 hover:shadow-md card-hover text-center" onclick="openJuz(${j})"><div class="text-2xl mb-1">📚</div><div class="font-bold text-emerald-800">Juz ${j}</div><p class="text-xs text-gray-500 mt-1">${names}</p></div>`}
+    c.innerHTML=html;
+}
+function openJuz(juzNo){const surahs=ALL_SURAHS.filter(s=>s.juz===juzNo);if(surahs.length>0)openSurah(surahs[0].no)}
+
+// FIX #9: Tambahkan fallback jika API gagal
+async function openSurah(no){
+    currentSurahNo=no;const s=ALL_SURAHS.find(x=>x.no===no);
+    if(!s)return;
+    document.getElementById('rdSurahName').textContent=s.name+' ('+s.ar+')';
+    document.getElementById('rdSurahInfo').textContent='Surat ke-'+s.no+' • '+s.ayat+' ayat • '+s.type+' • Juz '+s.juz;
+    document.getElementById('rdSurahBody').innerHTML='<div class="text-center py-10"><div class="text-4xl animate-pulse mb-3">📖</div><p class="text-gray-400">Memuat surat...</p></div>';
+    document.getElementById('surahModal').classList.add('show');document.body.style.overflow='hidden';
+    try{
+        if(surahCache[no]){renderSurahContent(surahCache[no],s);return}
+        const res=await fetch('https://api.alquran.cloud/v1/surah/'+no+'/editions/quran-uthmani,id.indonesian');
+        if(!res.ok)throw new Error('HTTP '+res.status);
+        const json=await res.json();
+        if(json.code===200){surahCache[no]=json.data;renderSurahContent(json.data,s)}
+        else throw new Error('API error: '+json.status);
+    }catch(err){
+        // FIX #9: Tampilkan pesan error yang lebih informatif dengan link alternatif
+        document.getElementById('rdSurahBody').innerHTML=`
+            <div class="text-center py-10">
+                <div class="text-4xl mb-3">⚠️</div>
+                <p class="text-red-500 font-semibold mb-2">Gagal memuat surat</p>
+                <p class="text-gray-500 text-sm mb-4">${err.message}</p>
+                <p class="text-gray-500 text-sm mb-3">Periksa koneksi internet Anda, lalu coba lagi.</p>
+                <button onclick="openSurah(${no})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">🔄 Coba Lagi</button>
+                <a href="https://quran.com/${no}" target="_blank" class="ml-2 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">🌐 Buka di Quran.com</a>
+            </div>`;
+    }
+}
+function renderSurahContent(data,surahInfo){
+    const arabic=data[0],indo=data[1];let html='';
+    if(surahInfo.no!==9&&surahInfo.no!==1)html+=`<div class="arabic text-center text-2xl gold-text bg-emerald-50 rounded-xl p-4 mb-5">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>`;
+    html+='<div class="space-y-1">';
+    for(let i=0;i<arabic.ayahs.length;i++){html+=`<div class="ayah-text"><div class="flex items-start gap-3"><span class="bg-emerald-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-1">${arabic.ayahs[i].numberInSurah}</span><div class="flex-1"><p class="arabic text-xl md:text-2xl text-gray-800 leading-loose mb-2">${arabic.ayahs[i].text}</p><p class="text-sm text-gray-600 leading-relaxed">${indo.ayahs[i].text}</p></div></div></div>`}
+    html+='</div>';document.getElementById('rdSurahBody').innerHTML=html;
+}
+function closeSurahModal(){document.getElementById('surahModal').classList.remove('show');document.body.style.overflow='auto'}
+function prevSurah(){if(currentSurahNo>1)openSurah(currentSurahNo-1)}
+function nextSurah(){if(currentSurahNo<114)openSurah(currentSurahNo+1)}
+
+// ==================== SHALAT ====================
+function buildShalatNav(){document.getElementById('shalatNav').innerHTML=shalatSteps.map((s,i)=>`<button onclick="showShalatStep(${i})" class="shalat-step-btn ${i===0?'bg-emerald-600 text-white':'bg-gray-200 text-gray-700'} px-3 py-2 rounded-full text-xs font-medium whitespace-nowrap transition">${i+1}. ${s.title}</button>`).join('')}
+function showShalatStep(idx){
+    const s=shalatSteps[idx];
+    document.querySelectorAll('.shalat-step-btn').forEach((b,i)=>{b.className='shalat-step-btn '+(i===idx?'bg-emerald-600 text-white':'bg-gray-200 text-gray-700')+' px-3 py-2 rounded-full text-xs font-medium whitespace-nowrap transition'});
+    document.getElementById('shalatContent').innerHTML=`<div class="fade-in"><div class="bg-gradient-to-r from-emerald-50 to-amber-50 rounded-2xl p-5 border border-emerald-200"><div class="flex items-center gap-3 mb-4"><span class="text-3xl">${s.icon}</span><h4 class="text-lg font-bold text-emerald-800">${idx+1}. ${s.title}</h4></div><p class="text-gray-600 text-sm mb-4">${s.desc}</p><div class="bg-white rounded-xl p-4 mb-3 shadow-sm"><h5 class="text-xs font-semibold text-emerald-600 uppercase mb-2">Bacaan Arab</h5><div class="arabic text-xl md:text-2xl text-gray-800 text-center leading-loose gold-text">${s.arabic}</div></div><div class="bg-white rounded-xl p-4 mb-3 shadow-sm"><h5 class="text-xs font-semibold text-blue-600 uppercase mb-2">Latin</h5><p class="text-gray-700 italic text-sm">${s.latin}</p></div><div class="bg-white rounded-xl p-4 shadow-sm"><h5 class="text-xs font-semibold text-purple-600 uppercase mb-2">Arti</h5><p class="text-gray-700 text-sm">${s.arti}</p></div></div><div class="flex justify-between mt-4">${idx>0?`<button onclick="showShalatStep(${idx-1})" class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-sm">⬅️ Sebelumnya</button>`:'<div></div>'}${idx<shalatSteps.length-1?`<button onclick="showShalatStep(${idx+1})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm">Selanjutnya ➡️</button>`:'<div></div>'}</div></div>`;
+}
+
+// ==================== DOA ====================
+const doaCategories=[{id:'ramadhan',icon:'🌙',label:'Ramadhan'},{id:'harian',icon:'📿',label:'Harian'},{id:'makan',icon:'🍽️',label:'Makan'},{id:'tidur',icon:'😴',label:'Tidur'},{id:'belajar',icon:'📚',label:'Belajar'}];
+function buildDoaNav(){document.getElementById('doaNav').innerHTML=doaCategories.map((c,i)=>`<button onclick="showDoaCategory('${c.id}')" class="doa-cat-btn ${i===0?'bg-emerald-600 text-white':'bg-gray-200 text-gray-700'} px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition">${c.icon} ${c.label}</button>`).join('')}
+function showDoaCategory(cat){
+    document.querySelectorAll('.doa-cat-btn').forEach((b,i)=>{const c=doaCategories[i];b.className='doa-cat-btn '+(c.id===cat?'bg-emerald-600 text-white':'bg-gray-200 text-gray-700')+' px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition'});
+    const doas=doaData[cat]||[];
+    document.getElementById('doaContent').innerHTML=doas.map(d=>`<div class="bg-gradient-to-r from-emerald-50 to-amber-50 rounded-xl p-5 mb-4 border border-emerald-200 fade-in card-hover"><h4 class="font-semibold text-emerald-800 mb-3">🤲 ${d.title}</h4><div class="bg-white rounded-lg p-4 mb-3"><div class="arabic text-xl md:text-2xl text-center gold-text leading-loose">${d.arabic}</div></div><p class="text-sm text-gray-600 italic mb-1"><strong>Latin:</strong> ${d.latin}</p><p class="text-sm text-gray-700"><strong>Arti:</strong> ${d.arti}</p></div>`).join('');
+}
+
+// ==================== SUBMIT AMALIAH ====================
+function submitAmaliah(e){
+    e.preventDefault();const url=getGasUrl();const btn=document.getElementById('btnSubmitAmaliah');
+    const hariKe=document.getElementById('amHari').value;
+    if(!hariKe){showToast('⚠️ Pilih hari Ramadhan ke-berapa!');return}
+    const data={action:'insert',username:currentUser.username,nama:currentUser.nama,kelas:currentUser.kelas,tanggal:document.getElementById('amTanggal').value,hariKe,subuh:ck('cb_subuh'),dzuhur:ck('cb_dzuhur'),ashar:ck('cb_ashar'),maghrib:ck('cb_maghrib'),isya:ck('cb_isya'),tarawih:ck('cb_tarawih'),witir:ck('cb_witir'),dhuha:ck('cb_dhuha'),tahajud:ck('cb_tahajud'),sahur:ck('cb_sahur'),puasa:ck('cb_puasa'),sedekah:ck('cb_sedekah'),dzikir:ck('cb_dzikir'),juzBaca:document.getElementById('amJuz').value,halaman:document.getElementById('amHalaman').value,hafalanSurat:document.getElementById('amHafalan').value,catatan:document.getElementById('amCatatan').value};
+    if(!url){let local=JSON.parse(localStorage.getItem('amaliahLocal')||'[]');data.Timestamp=new Date().toISOString();local.push(data);localStorage.setItem('amaliahLocal',JSON.stringify(local));showToast('✅ Amaliah disimpan lokal!');resetAmaliahForm();return}
+    btn.disabled=true;btn.innerHTML='⏳ Menyimpan...';
+    fetch(`${url}?${new URLSearchParams(data)}`).then(r=>r.json()).then(res=>{if(res.status==='success'){showToast('✅ '+res.message);resetAmaliahForm()}else showToast('❌ '+res.message)}).catch(err=>showToast('❌ '+err.message)).finally(()=>{btn.disabled=false;btn.innerHTML='💾 Simpan Amaliah'});
+}
+function ck(id){const el=document.getElementById(id);return el&&el.checked?'✅':'❌'}
+function resetAmaliahForm(){
+    document.querySelectorAll('#formAmaliah input[type="checkbox"]').forEach(cb=>cb.checked=false);
+    document.getElementById('amJuz').value='';
+    document.getElementById('amHalaman').value='';
+    document.getElementById('amHafalan').value='';
+    document.getElementById('amCatatan').value='';
+}
+
+// ==================== DATA TABLE ====================
+function loadAmaliahData(){
+    const url=getGasUrl();
+    if(!url){const local=JSON.parse(localStorage.getItem('amaliahLocal')||'[]');allAmaliahData=local;renderAmaliahTable(local);showToast('📋 Data lokal dimuat.');return}
+    document.getElementById('dataBody').innerHTML='<tr><td colspan="10" class="text-center py-8 text-blue-500">🔄 Memuat...</td></tr>';
+    fetch(`${url}?${new URLSearchParams({action:'read',role:currentUser.role,kelas:currentUser.kelas||'',username:currentUser.username})}`).then(r=>r.json()).then(res=>{if(res.status==='success'){allAmaliahData=res.data;renderAmaliahTable(res.data);populateKelasFilter(res.data)}}).catch(err=>document.getElementById('dataBody').innerHTML=`<tr><td colspan="10" class="text-center py-8 text-red-500">❌ ${err.message}</td></tr>`);
+}
+function renderAmaliahTable(data){
+    if(!data||!data.length){document.getElementById('dataBody').innerHTML='<tr><td colspan="10" class="text-center py-8 text-gray-400">Belum ada data</td></tr>';return}
+    document.getElementById('dataBody').innerHTML=data.map((r,i)=>{
+        const sc=['Subuh','Dzuhur','Ashar','Maghrib','Isya'].filter(k=>(r[k]||r[k.toLowerCase()])==='✅').length;
+        const sn=['Tarawih','Witir','Dhuha','Tahajud'].filter(k=>(r[k]||r[k.toLowerCase()])==='✅').length;
+        return`<tr class="${i%2===0?'bg-white':'bg-gray-50'} hover:bg-emerald-50"><td class="px-2 py-2 text-center">${i+1}</td><td class="px-2 py-2 font-medium">${r.Nama||r.nama||''}</td><td class="px-2 py-2 text-center">${r.Kelas||r.kelas||''}</td><td class="px-2 py-2 text-center">${r.Tanggal||r.tanggal||''}</td><td class="px-2 py-2 text-center">${r.HariKe||r.hariKe||''}</td><td class="px-2 py-2 text-center"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-xs">${sc}/5</span></td><td class="px-2 py-2 text-center"><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-xs">${sn}/4</span></td><td class="px-2 py-2 text-center">${r.Puasa||r.puasa||''}</td><td class="px-2 py-2 text-center">${(r.JuzBaca||r.juzBaca)?'Juz '+(r.JuzBaca||r.juzBaca):'-'}</td><td class="px-2 py-2">${r.HafalanSurat||r.hafalanSurat||'-'}</td></tr>`;
+    }).join('');
+}
+function populateKelasFilter(data){const kelasSet=new Set(data.map(r=>r.Kelas||r.kelas).filter(Boolean));const sel=document.getElementById('filterKelas');sel.innerHTML='<option value="">Semua Kelas</option>'+[...kelasSet].sort().map(k=>`<option value="${k}">${k}</option>`).join('')}
+
+// FIX #7: Safe access untuk filterAmaliahData
+function filterAmaliahData(){
+    const searchEl=document.getElementById('searchData');
+    const kelasEl=document.getElementById('filterKelas');
+    const search=(searchEl?searchEl.value:'').toLowerCase();
+    const kelas=kelasEl?kelasEl.value:'';
+    renderAmaliahTable(allAmaliahData.filter(r=>{
+        const nama=(r.Nama||r.nama||'').toLowerCase();
+        const rKelas=r.Kelas||r.kelas||'';
+        return nama.includes(search)&&(!kelas||rKelas===kelas);
+    }));
+}
+
+// ==================== PROGRESS ====================
+function loadMyProgress(){
+    const url=getGasUrl();
+    if(!url){showToast('⚠️ Hubungkan ke Spreadsheet untuk melihat progress');return}
+    document.getElementById('progressContent').innerHTML='<p class="text-center text-blue-500 py-8">🔄 Memuat...</p>';
+    fetch(`${url}?${new URLSearchParams({action:'read',role:currentUser.role,username:currentUser.username,kelas:currentUser.kelas||''})}`).then(r=>r.json()).then(res=>{
+        if(res.status==='success'){renderProgress(res.data)}else showToast('❌ '+res.message);
+    }).catch(err=>document.getElementById('progressContent').innerHTML=`<p class="text-center text-red-500 py-8">❌ ${err.message}</p>`);
+}
+function renderProgress(data){
+    const myData=data.filter(r=>String(r.Username||r.username)===String(currentUser.username));
+    const totalDays=myData.length;
+    if(!totalDays){document.getElementById('progressContent').innerHTML='<p class="text-center text-gray-400 py-8">Belum ada data amaliah. Isi form amaliah terlebih dahulu!</p>';return}
+    let totalShalat=0,totalSunnah=0,totalPuasa=0,totalTadarus=0;
+    myData.forEach(r=>{
+        ['Subuh','Dzuhur','Ashar','Maghrib','Isya'].forEach(k=>{if((r[k]||r[k.toLowerCase()])==='✅')totalShalat++});
+        ['Tarawih','Witir','Dhuha','Tahajud'].forEach(k=>{if((r[k]||r[k.toLowerCase()])==='✅')totalSunnah++});
+        if((r.Puasa||r.puasa)==='✅')totalPuasa++;
+        if(r.JuzBaca||r.juzBaca)totalTadarus++;
+    });
+    // Streak
+    const hariSet=new Set(myData.map(r=>r.Tanggal||r.tanggal||'').filter(Boolean));
+    const today=new Date();let streakDays=0;
+    for(let i=0;i<30;i++){const d=new Date(today);d.setDate(d.getDate()-i);const key=d.toISOString().split('T')[0];if(hariSet.has(key))streakDays++;else break;}
+    const sp=Math.round(totalShalat/(totalDays*5)*100),snp=Math.round(totalSunnah/(totalDays*4)*100),pp=Math.round(totalPuasa/totalDays*100),tp=Math.round(totalTadarus/totalDays*100);
+    // Update header stats
+    const scEl=document.getElementById('streakCount');if(scEl)scEl.textContent=streakDays;
+    const spEl=document.getElementById('pctShalat');if(spEl)spEl.textContent=sp+'%';
+    const snEl=document.getElementById('pctSunnah');if(snEl)snEl.textContent=snp+'%';
+    const ppEl=document.getElementById('pctPuasa');if(ppEl)ppEl.textContent=pp+'%';
+    const bars=[
+        {label:'🕌 Shalat 5 Waktu',pct:sp,sub:`${totalShalat}/${totalDays*5}`,color:'bg-emerald-500'},
+        {label:'🌙 Tarawih & Witir',pct:Math.round((myData.filter(r=>r.Tarawih==='✅').length)/totalDays*100),sub:`${myData.filter(r=>r.Tarawih==='✅').length} hari`,color:'bg-indigo-500'},
+        {label:'☀️ Dhuha',pct:Math.round((myData.filter(r=>r.Dhuha==='✅').length)/totalDays*100),sub:`${myData.filter(r=>r.Dhuha==='✅').length} hari`,color:'bg-orange-500'},
+        {label:'🌌 Tahajud',pct:Math.round((myData.filter(r=>r.Tahajud==='✅').length)/totalDays*100),sub:`${myData.filter(r=>r.Tahajud==='✅').length} hari`,color:'bg-blue-500'},
+        {label:'🕌 Puasa',pct:pp,sub:`${totalPuasa} hari`,color:'bg-purple-500'},
+        {label:'💰 Sedekah',pct:Math.round((myData.filter(r=>r.Sedekah==='✅').length)/totalDays*100),sub:`${myData.filter(r=>r.Sedekah==='✅').length} hari`,color:'bg-pink-500'},
+        {label:'📖 Tadarus Quran',pct:tp,sub:`${totalTadarus} hari`,color:'bg-amber-500'},
+    ];
+    document.getElementById('progressContent').innerHTML=`
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mb-5">
+            <div class="bg-emerald-50 rounded-xl p-3"><div class="text-2xl font-bold text-emerald-700">${totalDays}</div><div class="text-xs text-gray-500">Hari Dicatat</div></div>
+            <div class="bg-amber-50 rounded-xl p-3"><div class="text-2xl font-bold text-amber-600">${totalShalat}</div><div class="text-xs text-gray-500">Total Shalat</div></div>
+            <div class="bg-purple-50 rounded-xl p-3"><div class="text-2xl font-bold text-purple-600">${totalPuasa}</div><div class="text-xs text-gray-500">Hari Puasa</div></div>
+            <div class="bg-red-50 rounded-xl p-3"><div class="text-2xl font-bold text-red-500">🔥${streakDays}</div><div class="text-xs text-gray-500">Streak</div></div>
+        </div>
+        <div class="space-y-3">${bars.map(b=>`<div>
+            <div class="flex justify-between text-sm mb-1"><span class="font-medium text-gray-700">${b.label}</span><span class="font-bold text-gray-600">${b.pct}% <span class="text-xs text-gray-400">(${b.sub})</span></span></div>
+            <div class="prog-bar"><div class="prog-fill ${b.color}" style="width:${b.pct}%"></div></div>
+        </div>`).join('')}</div>`;
+    loadHafalanProgress();
+}
+function loadHafalanProgress(){
+    const url=getGasUrl();const el=document.getElementById('hafalanProgressContent');if(!el)return;
+    if(!url){el.innerHTML='<p class="text-xs text-gray-400">Hubungkan ke Spreadsheet.</p>';return}
+    fetch(`${url}?${new URLSearchParams({action:'readHafalan',role:currentUser.role,username:currentUser.username,kelas:currentUser.kelas||''})}`).then(r=>r.json()).then(res=>{
+        if(res.status!=='success'){el.innerHTML='<p class="text-xs text-red-400">Gagal memuat hafalan.</p>';return}
+        const data=res.data.filter(r=>String(r.Username||r.username)===String(currentUser.username));
+        if(!data.length){el.innerHTML='<p class="text-xs text-gray-400">Belum ada hafalan yang disetorkan.</p>';return}
+        const lancar=data.filter(r=>(r.Status||r.status)==='Lancar').length;
+        const pct=Math.round(lancar/37*100);
+        el.innerHTML=`<div class="flex justify-between text-sm mb-2"><span class="font-medium">Surat hafal (Lancar)</span><span class="font-bold text-green-600">${lancar}/37</span></div>
+            <div class="prog-bar mb-3"><div class="prog-fill bg-green-500" style="width:${pct}%"></div></div>
+            <div class="grid grid-cols-3 gap-2 text-xs text-center">
+                <div class="bg-green-50 rounded-lg p-2"><div class="font-bold text-green-700">${data.filter(r=>(r.Status||r.status)==='Lancar').length}</div><div>Lancar</div></div>
+                <div class="bg-yellow-50 rounded-lg p-2"><div class="font-bold text-yellow-700">${data.filter(r=>(r.Status||r.status)==='Kurang Lancar').length}</div><div>Kurang</div></div>
+                <div class="bg-blue-50 rounded-lg p-2"><div class="font-bold text-blue-700">${data.filter(r=>(r.Status||r.status)==='Menunggu').length}</div><div>Menunggu</div></div>
+            </div>`;
+    }).catch(()=>{el.innerHTML='<p class="text-xs text-red-400">Gagal memuat progress hafalan.</p>';});
+}
+
+// ==================== USER MANAGEMENT (ADMIN) ====================
+function showAddUserForm(){document.getElementById('addUserForm').classList.remove('hidden')}
+function loadUsers(){
+    const url=getGasUrl();
+    if(!url){document.getElementById('userBody').innerHTML='<tr><td colspan="6" class="text-center py-8 text-amber-500">⚠️ Hubungkan ke Google Spreadsheet untuk mengelola user</td></tr>';return}
+    document.getElementById('userBody').innerHTML='<tr><td colspan="6" class="text-center py-8 text-blue-500">🔄 Memuat...</td></tr>';
+    fetch(`${url}?action=getUsers`).then(r=>r.json()).then(res=>{if(res.status==='success'){allUsersData=res.data;renderUsersTable(res.data)}}).catch(err=>document.getElementById('userBody').innerHTML=`<tr><td colspan="6" class="text-center py-8 text-red-500">❌ ${err.message}</td></tr>`);
+}
+function renderUsersTable(data){
+    if(!data||!data.length){document.getElementById('userBody').innerHTML='<tr><td colspan="6" class="text-center py-8 text-gray-400">Belum ada user</td></tr>';return}
+    const rc={siswa:'bg-blue-100 text-blue-800',guru:'bg-green-100 text-green-800',wali:'bg-amber-100 text-amber-800',admin:'bg-red-100 text-red-800'};
+    document.getElementById('userBody').innerHTML=data.map((u,i)=>`<tr class="${i%2===0?'bg-white':'bg-gray-50'} hover:bg-emerald-50"><td class="px-3 py-2 text-center">${i+1}</td><td class="px-3 py-2 font-medium">${u.username}</td><td class="px-3 py-2">${u.nama}</td><td class="px-3 py-2"><span class="${rc[u.role]||'bg-gray-100'} px-2 py-0.5 rounded-full text-xs">${ROLE_LABELS[u.role]||u.role}</span></td><td class="px-3 py-2 text-center">${u.kelas||'-'}</td><td class="px-3 py-2 text-center">${u.username!=='admin'?`<button onclick="deleteUserConfirm('${u.username}')" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">🗑️</button>`:'<span class="text-xs text-gray-400">Protected</span>'}</td></tr>`).join('');
+}
+function filterUsers(){const role=document.getElementById('filterUserRole').value;renderUsersTable(role?allUsersData.filter(u=>u.role===role):allUsersData)}
+function addUser(){
+    const url=getGasUrl(),username=document.getElementById('newUsername').value.trim(),password=document.getElementById('newPassword').value.trim(),nama=document.getElementById('newNama').value.trim(),role=document.getElementById('newRole').value,kelas=document.getElementById('newKelas').value.trim();
+    if(!username||!password||!nama){showToast('⚠️ Isi semua field yang diperlukan!');return}
+    if(!url){showToast('⚠️ Hubungkan GAS dulu untuk menambah user!');return}
+    fetch(`${url}?${new URLSearchParams({action:'addUser',username,password,nama,role,kelas})}`).then(r=>r.json()).then(res=>{showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);if(res.status==='success'){document.getElementById('addUserForm').classList.add('hidden');['newUsername','newPassword','newNama','newKelas'].forEach(id=>document.getElementById(id).value='');loadUsers()}}).catch(err=>showToast('❌ '+err.message));
+}
+function deleteUserConfirm(username){
+    if(!confirm('Yakin hapus user "'+username+'"?'))return;const url=getGasUrl();if(!url){showToast('⚠️ Hubungkan GAS dulu!');return}
+    fetch(`${url}?action=deleteUser&username=${encodeURIComponent(username)}`).then(r=>r.json()).then(res=>{showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);loadUsers()}).catch(err=>showToast('❌ '+err.message));
+}
+
+// ==================== KELOLA SISWA (WALI KELAS & GURU PAI) ====================
+function initSiswakuTab(){
+    const isWali=currentUser.role==='wali', isGuru=currentUser.role==='guru';
+    const title=document.getElementById('siswakuTitle');
+    const sub=document.getElementById('siswakuSubtitle');
+    const kelasLabel=document.getElementById('siswakuKelasLabel');
+    const filterDiv=document.getElementById('siswakuKelasFilter');
+    const siswaKelasInput=document.getElementById('newSiswaKelas');
+
+    if(isWali){
+        title.textContent='👩‍🏫 Siswa Wali — '+currentUser.kelas;
+        sub.textContent='Tambahkan dan kelola siswa di kelas Anda';
+        kelasLabel.textContent=currentUser.kelas;
+        if(siswaKelasInput)siswaKelasInput.value=currentUser.kelas||'';
+        filterDiv.classList.add('hidden');
+    }else if(isGuru){
+        title.textContent='👨‍🏫 Siswa Binaan Guru PAI';
+        sub.textContent='Tambahkan siswa sesuai kelas wali yang Anda ajar';
+        kelasLabel.textContent='(pilih kelas)';
+        filterDiv.classList.remove('hidden');
+        // Populate kelas filter dari data wali
+        populateGuruKelasFilter();
+    }
+}
+
+function populateGuruKelasFilter(){
+    const url=getGasUrl();
+    const sel=document.getElementById('filterSiswakuKelas');
+    if(!url){
+        // Demo: pakai kelas dari DEFAULT_ACCOUNTS wali
+        const waliAccounts=DEFAULT_ACCOUNTS.filter(a=>a.role==='wali'&&a.kelas);
+        const kelasList=[...new Set(waliAccounts.map(a=>a.kelas))].sort();
+        sel.innerHTML='<option value="">Semua Kelas</option>'+kelasList.map(k=>`<option value="${k}">${k}</option>`).join('');
+        return;
+    }
+    fetch(`${url}?action=getUsers&role=wali`).then(r=>r.json()).then(res=>{
+        if(res.status==='success'){
+            const kelasList=[...new Set(res.data.filter(u=>u.kelas).map(u=>u.kelas))].sort();
+            sel.innerHTML='<option value="">Semua Kelas</option>'+kelasList.map(k=>`<option value="${k}">${k}</option>`).join('');
+        }
+    }).catch(()=>{});
+}
+
+function toggleTambahSiswaForm(){
+    const form=document.getElementById('tambahSiswaForm');
+    const btn=document.getElementById('btnToggleSiswaForm');
+    const isHidden=form.classList.contains('hidden');
+    form.classList.toggle('hidden');
+    btn.textContent=isHidden?'✖ Tutup':'➕ Tambah Siswa';
+
+    // Untuk guru: set kelas dari filter yang dipilih
+    if(isHidden && currentUser.role==='guru'){
+        const selKelas=document.getElementById('filterSiswakuKelas').value;
+        document.getElementById('newSiswaKelas').value=selKelas||'(pilih kelas di filter dulu)';
+        document.getElementById('newSiswaKelas').readOnly=false;
+    }
+}
+
+function tambahSiswa(){
+    const nis=document.getElementById('newSiswaNis').value.trim();
+    const nama=document.getElementById('newSiswaNama').value.trim();
+    const password=document.getElementById('newSiswaPassword').value.trim()||'siswa123';
+    const kelas=document.getElementById('newSiswaKelas').value.trim();
+
+    if(!nis||!nama||!kelas){showToast('⚠️ NIS, Nama, dan Kelas wajib diisi!');return}
+    const url=getGasUrl();
+    if(!url){showToast('⚠️ Hubungkan ke Google Spreadsheet terlebih dahulu!');return}
+
+    const addedBy=currentUser.username;
+    fetch(`${url}?${new URLSearchParams({action:'addUser',username:nis,password,nama,role:'siswa',kelas,addedBy})}`)
+        .then(r=>r.json()).then(res=>{
+            showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);
+            if(res.status==='success'){
+                ['newSiswaNis','newSiswaNama'].forEach(id=>document.getElementById(id).value='');
+                document.getElementById('newSiswaPassword').value='siswa123';
+                document.getElementById('tambahSiswaForm').classList.add('hidden');
+                document.getElementById('btnToggleSiswaForm').textContent='➕ Tambah Siswa';
+                loadSiswaku();
+            }
+        }).catch(err=>showToast('❌ '+err.message));
+}
+
+function loadSiswaku(){
+    const url=getGasUrl();
+    const list=document.getElementById('siswakuList');
+    list.innerHTML='<p class="text-center text-blue-500 py-6">🔄 Memuat...</p>';
+
+    if(!url){
+        list.innerHTML='<div class="text-center py-8"><p class="text-amber-600 font-semibold">⚠️ Hubungkan ke Google Spreadsheet</p><p class="text-sm text-gray-500 mt-1">URL GAS belum dikonfigurasi di Setup.</p><button onclick="showTab(\'setup\')" class="mt-3 bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm">⚙️ Buka Setup</button></div>';
+        return;
+    }
+
+    const params={action:'getUsers',role:'siswa'};
+    if(currentUser.role==='wali'&&currentUser.kelas)params.kelas=currentUser.kelas;
+    else if(currentUser.role==='guru'){
+        const selKelas=document.getElementById('filterSiswakuKelas').value;
+        if(selKelas)params.kelas=selKelas;
+    }
+    fetch(`${url}?${new URLSearchParams(params)}`).then(r=>r.json()).then(res=>{
+        if(res.status==='success'){
+            allSiswakuData=res.data;
+            renderSiswakuList(res.data);
+        }else list.innerHTML=`<p class="text-center text-red-500 py-6">❌ ${res.message}</p>`;
+    }).catch(err=>list.innerHTML=`<p class="text-center text-red-500 py-6">❌ ${err.message}</p>`);
+}
+
+function renderSiswakuList(data){
+    const list=document.getElementById('siswakuList');
+    const kelasLabel=document.getElementById('siswakuKelasLabel');
+    if(currentUser.role==='guru'){
+        const selKelas=document.getElementById('filterSiswakuKelas').value;
+        kelasLabel.textContent=selKelas||'(semua)';
+    }
+    if(!data||!data.length){
+        list.innerHTML='<p class="text-center text-gray-400 py-8">Belum ada siswa terdaftar. Tambahkan siswa pertama!</p>';
+        return;
+    }
+    list.innerHTML=`<div class="mb-2 text-sm text-gray-500">${data.length} siswa ditemukan</div>
+    <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+        <thead><tr class="bg-blue-600 text-white">
+            <th class="px-3 py-2 text-left">No</th>
+            <th class="px-3 py-2 text-left">NIS</th>
+            <th class="px-3 py-2 text-left">Nama</th>
+            <th class="px-3 py-2 text-center">Kelas</th>
+            <th class="px-3 py-2 text-center">Status</th>
+            <th class="px-3 py-2 text-center">Aksi</th>
+        </tr></thead>
+        <tbody>${data.map((s,i)=>`<tr class="${i%2===0?'bg-white':'bg-gray-50'} hover:bg-blue-50 border-b border-gray-100">
+            <td class="px-3 py-2.5 text-center text-gray-500">${i+1}</td>
+            <td class="px-3 py-2.5 font-mono text-xs font-semibold text-blue-700">${s.username}</td>
+            <td class="px-3 py-2.5 font-medium">${s.nama}</td>
+            <td class="px-3 py-2.5 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs">${s.kelas||'-'}</span></td>
+            <td class="px-3 py-2.5 text-center"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs">✅ Aktif</span></td>
+            <td class="px-3 py-2.5 text-center">
+                <button onclick="hapusSiswaku('${s.username}','${s.nama.replace(/'/g,"\\'")}')‌" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">🗑️</button>
+            </td>
+        </tr>`).join('')}</tbody>
+    </table></div>`;
+}
+
+function filterSiswaku(){
+    const search=(document.getElementById('searchSiswaku').value||'').toLowerCase();
+    const kelasFilter=currentUser.role==='guru'?(document.getElementById('filterSiswakuKelas').value||''):'';
+    let filtered=allSiswakuData;
+    if(kelasFilter)filtered=filtered.filter(s=>s.kelas===kelasFilter);
+    if(search)filtered=filtered.filter(s=>(s.nama||'').toLowerCase().includes(search)||(s.username||'').toLowerCase().includes(search));
+    if(currentUser.role==='guru'&&kelasFilter){
+        // Update kelas di form tambah siswa
+        const input=document.getElementById('newSiswaKelas');
+        if(input&&!document.getElementById('tambahSiswaForm').classList.contains('hidden'))input.value=kelasFilter;
+    }
+    renderSiswakuList(filtered);
+    if(currentUser.role==='guru')loadSiswaku();// reload with filter
+}
+
+function hapusSiswaku(username, nama){
+    if(!confirm(`Yakin hapus siswa "${nama}" (${username})?`))return;
+    const url=getGasUrl();
+    if(!url){showToast('⚠️ Hubungkan ke Google Spreadsheet terlebih dahulu!');return}
+    fetch(`${url}?action=deleteUser&username=${encodeURIComponent(username)}`)
+        .then(r=>r.json()).then(res=>{
+            showToast(res.status==='success'?'✅ '+res.message:'❌ '+res.message);
+            if(res.status==='success')loadSiswaku();
+        }).catch(err=>showToast('❌ '+err.message));
+}
+
+// ==================== SETUP ====================
+function getGasUrl(){return GAS_URL_EMBEDDED||localStorage.getItem('gasUrl')||''}
+function onSpreadsheetIdChange(){localStorage.setItem('spreadsheetId',document.getElementById('spreadsheetId').value.trim());updateGasCodeDisplay();updateIdStatus()}
+function updateIdStatus(){
+    const ssId=(document.getElementById('spreadsheetId')?document.getElementById('spreadsheetId').value.trim():'')||localStorage.getItem('spreadsheetId')||'';
+    const el=document.getElementById('idStatus');if(!el)return;
+    if(ssId&&ssId.length>10){el.innerHTML=`<div class="bg-green-100 border-2 border-green-400 rounded-xl p-4 flex items-start gap-3"><div class="text-2xl">✅</div><div><p class="font-bold text-green-800">Spreadsheet ID Terdeteksi!</p><p class="text-sm text-green-700 mt-1">ID: <code class="bg-green-200 px-2 py-0.5 rounded font-mono text-xs break-all">${ssId}</code></p><p class="text-sm text-green-600 mt-1">→ ID sudah <b>tertanam otomatis</b> di kode GAS. Tinggal copy!</p></div></div>`}
+    else{el.innerHTML=`<div class="bg-red-100 border-2 border-red-300 rounded-xl p-4 flex items-start gap-3"><div class="text-2xl">⚠️</div><div><p class="font-bold text-red-800">Spreadsheet ID Belum Dimasukkan</p><p class="text-sm text-red-600 mt-1">Masukkan ID di atas agar kode GAS berisi ID Spreadsheet Anda.</p></div></div>`}
+}
+function updateGasCodeDisplay(){
+    const ssIdInput=document.getElementById('spreadsheetId');const ssId=ssIdInput?ssIdInput.value.trim():(localStorage.getItem('spreadsheetId')||'');
+    const codeEl=document.getElementById('gasCode');const previewEl=document.getElementById('previewId');
+    if(codeEl)codeEl.textContent=generateGasCode(ssId);
+    if(previewEl){if(ssId&&ssId.length>10){previewEl.textContent=ssId;previewEl.className='text-yellow-300 font-bold'}else{previewEl.textContent='BELUM_DIISI — Masukkan ID di Step 1';previewEl.className='text-red-400 font-bold'}}
+}
+function toggleCodeView(){const c=document.getElementById('gasCodeContainer');const btn=document.getElementById('btnToggleCode');if(c.classList.contains('hidden')){c.classList.remove('hidden');btn.textContent='🙈 Sembunyikan'}else{c.classList.add('hidden');btn.textContent='👁️ Lihat Kode'}}
+function saveSetup(){
+    const ssId=document.getElementById('spreadsheetId').value.trim(),url=document.getElementById('gasUrl').value.trim();
+    if(ssId)localStorage.setItem('spreadsheetId',ssId);if(url)localStorage.setItem('gasUrl',url);
+    if(ssId||url){updateGasCodeDisplay();updateIdStatus();showToast('✅ Pengaturan disimpan!')}else showToast('⚠️ Masukkan ID atau URL terlebih dahulu!');
+}
+function loadSetupFields(){
+    const ssId=localStorage.getItem('spreadsheetId');const url=localStorage.getItem('gasUrl');
+    if(ssId&&document.getElementById('spreadsheetId'))document.getElementById('spreadsheetId').value=ssId;
+    if(url&&document.getElementById('gasUrl'))document.getElementById('gasUrl').value=url;
+    updateGasCodeDisplay();updateIdStatus();updateEmbeddedUrlStatus();
+}
+function updateEmbeddedUrlStatus(){
+    const el=document.getElementById('embeddedUrlStatus');if(!el)return;
+    if(GAS_URL_EMBEDDED){el.innerHTML=`<div class="bg-green-100 border-2 border-green-400 rounded-xl p-4 flex items-start gap-3"><div class="text-2xl">✅</div><div><p class="font-bold text-green-800">URL Web App Sudah Tertanam di Kode!</p><p class="text-sm text-green-700 mt-1">URL: <code class="bg-green-200 px-2 py-0.5 rounded font-mono text-xs break-all">${GAS_URL_EMBEDDED}</code></p><p class="text-sm text-green-600 mt-1">Aplikasi otomatis terhubung ke Google Spreadsheet.</p></div></div>`}
+    else{el.innerHTML=`<div class="bg-yellow-100 border-2 border-yellow-400 rounded-xl p-4 flex items-start gap-3"><div class="text-2xl">⚠️</div><div><p class="font-bold text-yellow-800">URL Belum Ditanam di Kode</p><p class="text-sm text-yellow-700 mt-1">Paste URL di kolom atas lalu klik Simpan (sementara), atau tanam langsung di file index.html (permanen).</p></div></div>`}
+}
+function testConnection(){
+    const url=getGasUrl(),st=document.getElementById('connectionStatus');
+    if(!url){st.innerHTML='<span class="text-red-600">❌ URL GAS belum diatur!</span>';return}
+    st.innerHTML='<span class="text-blue-600">🔄 Menguji koneksi...</span>';
+    fetch(`${url}?action=test`).then(r=>r.json()).then(d=>{st.innerHTML=d.status==='success'?`<span class="text-green-600">✅ ${d.message}</span>`:`<span class="text-red-600">❌ ${d.message}</span>`}).catch(err=>st.innerHTML=`<span class="text-red-600">❌ ${err.message}</span>`);
+}
+function initSheets(){
+    const url=getGasUrl(),st=document.getElementById('connectionStatus');
+    if(!url){st.innerHTML='<span class="text-red-600">❌ URL GAS belum diatur!</span>';return}
+    st.innerHTML='<span class="text-blue-600">🔄 Membuat database...</span>';
+    fetch(`${url}?action=init`).then(r=>r.json()).then(d=>{if(d.status==='success'){st.innerHTML=`<span class="text-green-600">✅ ${d.message}</span>`;showToast('✅ Database berhasil dibuat!')}else st.innerHTML=`<span class="text-red-600">❌ ${d.message}</span>`}).catch(err=>st.innerHTML=`<span class="text-red-600">❌ ${err.message}</span>`);
+}
+
+// FIX #11: Gunakan Clipboard API modern dengan fallback yang lebih baik
+function copyGasCode(){
+    const ssId=document.getElementById('spreadsheetId')?document.getElementById('spreadsheetId').value.trim():localStorage.getItem('spreadsheetId')||'';
+    const code=generateGasCode(ssId);
+    const successMsg=ssId&&ssId.length>10?'✅ Kode GAS disalin! (ID Spreadsheet sudah tertanam)':'⚠️ Kode disalin, tapi Spreadsheet ID belum diisi!';
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(code).then(()=>showToast(successMsg)).catch(()=>fallbackCopy(code,successMsg));
+    }else{fallbackCopy(code,successMsg)}
+}
+function fallbackCopy(text,successMsg){
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';ta.style.top='-9999px';
+    document.body.appendChild(ta);ta.focus();ta.select();
+    try{document.execCommand('copy');showToast(successMsg)}
+    catch(e){showToast('❌ Gagal menyalin. Klik "Lihat Kode" lalu salin manual.')}
+    document.body.removeChild(ta);
+}
+
+// ==================== UTILITIES ====================
+function showToast(msg){
+    const t=document.getElementById('toast');
+    document.getElementById('toastMsg').textContent=msg;
+    const isError=msg.includes('❌')||msg.includes('⚠️');
+    t.className='toast '+(isError?'bg-red-600':'bg-green-600')+' text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-2 show';
+    clearTimeout(t._hideTimer);
+    t._hideTimer=setTimeout(()=>t.classList.remove('show'),4000);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSurahModal();closeHafalanModal()}});
+</script>
+</body>
+</html>
